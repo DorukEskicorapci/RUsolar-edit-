@@ -1,0 +1,17 @@
+#ifndef CAN_H
+#define CAN_H
+
+#include <stdint.h>
+
+typedef struct {
+	uint16_t param_id;
+	union {
+		int ival;
+		unsigned int uval;
+		float fval;
+	};
+
+} can_param_t;
+
+
+#endif

@@ -1,0 +1,14 @@
+#ifndef CAN_PARAMS_H
+#define CAN_PARAMS_H
+
+#include "can.h"
+
+typedef struct {
+	can_param_t speed;
+} can_params_t;
+
+extern can_params_t params;
+
+
+
+#endif

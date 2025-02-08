@@ -64,13 +64,12 @@ static void MX_TIM3_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) {
 
-}
 
 void HAL_GPIO_EXTI_Callback(uint16_t pin) {
 
 }
+
 
 /* USER CODE END 0 */
 

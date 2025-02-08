@@ -1,0 +1,29 @@
+#ifndef CAN_H
+#define CAN_H
+
+#include <stdint.h>
+
+typedef struct {
+	unsigned char message_mode: 4, marked_for_send: 1, reserved: 3;
+} internal_flags_t;
+
+typedef struct {
+	uint16_t param_id;
+	uint32_t value;
+	uint32_t last_value;
+	uint32_t safe_value;
+	uint32_t timestamp;
+	uint8_t  ttl;
+	internal_flags_t flags;
+} can_param_t;
+
+typedef enum {
+	PASSIVE,
+	DEPENDENCY_NO_CALLBACK,
+	DEPENCENCY_CALLBACK,
+	AUTO_BROADCAST,
+	MANUAL_BROADCAST
+} message_mode_t;
+
+
+#endif

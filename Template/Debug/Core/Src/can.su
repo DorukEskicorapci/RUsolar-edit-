@@ -1,0 +1,4 @@
+../Core/Src/can.c:8:6:sw3_can_interrupt_handler	16	static
+../Core/Src/can.c:12:6:HAL_CAN_RxFifo0MsgPendingCallback	16	static
+../Core/Src/can.c:16:6:sw3_can_error_handler	16	static
+../Core/Src/can.c:20:6:sw3_can_init	56	static

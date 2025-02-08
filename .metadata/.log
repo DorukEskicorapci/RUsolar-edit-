@@ -99,3 +99,39 @@ java.lang.NullPointerException: Cannot invoke "org.eclipse.cdt.managedbuilder.in
 
 !ENTRY org.eclipse.cdt.core 1 0 2025-01-27 19:52:30.024
 !MESSAGE Indexed 'Template' (23 sources, 111 headers) in 2.75 sec: 11,741 declarations; 70,425 references; 2 unresolved inclusions; 42 syntax errors; 147 unresolved names (0.18%)
+!SESSION 2025-02-03 19:40:03.915 -----------------------------------------------
+eclipse.buildId=Version 1.17.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-02-03 19:40:49.782
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-02-03 19:40:49.786
+!MESSAGE Log4j2 initialized with config file C:\Users\corre\coding\Software-3\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-02-03 19:41:07.720
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2025-02-07 19:23:38.353 -----------------------------------------------
+eclipse.buildId=Version 1.17.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-02-07 19:30:16.218
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-02-07 19:30:16.220
+!MESSAGE Log4j2 initialized with config file C:\Users\corre\coding\Software-3\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-02-07 19:30:24.833
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.launch 2 0 2025-02-07 20:28:51.394
+!MESSAGE Won't launch debug session since we failed to locate the binary.
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.launch 2 0 2025-02-07 20:29:07.612
+!MESSAGE Won't launch debug session since we failed to locate the binary.

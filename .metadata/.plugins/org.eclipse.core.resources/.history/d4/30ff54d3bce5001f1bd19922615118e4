@@ -1,0 +1,18 @@
+#ifndef CAN_PARAMS_H
+#define CAN_PARAMS_H
+
+
+#include "can.h"
+
+typedef struct {
+	can_param_t speed;
+} can_params_t;
+
+can_params_t params = {
+		.speed = {
+				.param_id = 1025,
+
+		};
+};
+
+#endif
