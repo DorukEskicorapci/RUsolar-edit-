@@ -12,13 +12,26 @@ typedef struct {
 	unsigned char message_mode: 4, marked_for_send: 1, reserved: 3;
 } internal_flags_t;
 
+// Define CAN message structure
 typedef struct {
-	uint16_t param_id;
+	// id of the message
+	uint16_t PARAM_ID;
+
+	// the message itself -- current message
 	uint32_t value;
+
+	// the previous message
 	uint32_t last_value;
-	uint32_t safe_value;
+
+	// the default value in case we don't receive any messages or something went wrong
+	uint32_t SAFE_VALUE;
+
 	uint32_t timestamp;
-	uint8_t  ttl;
+
+	// time to live
+	uint8_t TTL;
+
+	// some flags to manage the message
 	internal_flags_t flags;
 } can_param_t;
 
@@ -37,8 +50,9 @@ typedef struct {
 
 typedef union {
 	uint8_t present;
-	uint8_t nack: 1, other: 1, runtime: 1, reserved: 5;
+	uint8_t nack: 1, other: 1, runtime: 1, broadcast_conflict: 1, reserved: 4;
 } can_errors_t;
+
 extern can_errors_t sw3_can_errors;
 
 //////////////////////////////////////////////////////////
@@ -56,5 +70,7 @@ void sw3_can_loop();
 int sw3_set_param_mode(message_mode_t, can_param_t*);
 
 int sw3_force_send(can_param_t*);
+
+void sw3_can_set_third_party_callback(void (*callback)(can_param_t*));
 
 #endif

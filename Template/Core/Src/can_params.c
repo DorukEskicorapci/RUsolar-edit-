@@ -1,8 +1,8 @@
 #include "can_params.h"
 
-can_params_t params = {
+can_params_t gv_params = {
 		.speed = {
-				.param_id = 1025,
+				.PARAM_ID = 1025,
 				.value = 0,
 				.last_value = 0,
 				.safe_value = 0,
