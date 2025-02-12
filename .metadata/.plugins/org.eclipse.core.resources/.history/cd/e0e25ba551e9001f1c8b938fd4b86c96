@@ -8,8 +8,8 @@ typedef union {
 		uint16_t id;
 		uint32_t value;
 		uint16_t reserved;
-	};
-	uint8_t data[8];
+	}
+	uint64_t data;
 } can_payload_t;
 
 static can_param_t* gv_params_arr = (can_param_t*)&gv_params;
@@ -22,7 +22,7 @@ static void (*sw3_can_third_party_callback)(can_param_t*);
 static can_param_t* find(uint16_t id) {
 	for(int i = 0; i < gv_params_size; i++) {
 		if (id == gv_params_arr[i].PARAM_ID) {
-			return &gv_params_arr[i];
+			return gv_params_arr[i];
 		}
 	}
 	return NULL;
@@ -30,7 +30,7 @@ static can_param_t* find(uint16_t id) {
 
 void sw3_can_set_third_party_callback(void (*callback)(can_param_t*)) {
 	if (!callback) return;
-	sw3_can_third_party_callback = callback;
+	sw3_can_thrid_party_callback = callback;
 }
 
 void sw3_can_interrupt_handler(CAN_HandleTypeDef* hcan) {
@@ -50,7 +50,7 @@ void sw3_can_interrupt_handler(CAN_HandleTypeDef* hcan) {
 			}
 
 	if (can_payload.id > 4095) { // not a valid ID
-		return;
+		return
 	} else if (can_payload.id >= 2048) { // is a global vehicle parameter
 		param->last_value = param->value;
 		param->value = can_payload.value;

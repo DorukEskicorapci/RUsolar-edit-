@@ -886,3 +886,165 @@ Finished building: default.size.stdout
  
 Finished building: Template.list
  
+09:56:01 **** Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+../Core/Src/can_params.c:8:34: error: 'can_param_t' has no member named 'safe_value'; did you mean 'last_value'?
+    8 |                                 .safe_value = 0,
+      |                                  ^~~~~~~~~~
+      |                                  last_value
+../Core/Src/can_params.c:10:34: error: 'can_param_t' has no member named 'ttl'
+   10 |                                 .ttl = 10,
+      |                                  ^~~
+../Core/Src/can.c:12:18: error: expected ':', ',', ';', '}' or '__attribute__' before 'data'
+   12 |         uint64_t data;
+      |                  ^~~~
+../Core/Src/can.c: In function 'find':
+../Core/Src/can.c:25:45: error: incompatible types when returning type 'can_param_t' but 'can_param_t *' was expected
+   25 |                         return gv_params_arr[i];
+      |                                ~~~~~~~~~~~~~^~~
+../Core/Src/can.c: In function 'sw3_can_set_third_party_callback':
+../Core/Src/can.c:33:9: error: 'sw3_can_thrid_party_callback' undeclared (first use in this function); did you mean 'sw3_can_third_party_callback'?
+   33 |         sw3_can_thrid_party_callback = callback;
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |         sw3_can_third_party_callback
+../Core/Src/can.c:33:9: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/can.c: In function 'sw3_can_interrupt_handler':
+../Core/Src/can.c:39:76: error: 'can_payload_t' has no member named 'data'
+   39 |         if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &RxHeader, can_payload.data) != HAL_OK) return;
+      |                                                                            ^
+../Core/Src/can.c:40:46: error: 'can_payload_t' has no member named 'id'
+   40 |         can_param_t* param = find(can_payload.id);
+      |                                              ^
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+../Core/Src/can.c:52:24: error: 'can_payload_t' has no member named 'id'
+   52 |         if (can_payload.id > 4095) { // not a valid ID
+      |                        ^
+../Core/Src/can.c:54:9: error: expected expression before '}' token
+   54 |         } else if (can_payload.id >= 2048) { // is a global vehicle parameter
+      |         ^
+../Core/Src/can.c:54:9: warning: 'return' with a value, in function returning void [-Wreturn-type]
+../Core/Src/can.c:36:6: note: declared here
+   36 | void sw3_can_interrupt_handler(CAN_HandleTypeDef* hcan) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~
+make: *** Waiting for unfinished jobs....
+../Core/Src/can.c:54:31: error: 'can_payload_t' has no member named 'id'
+   54 |         } else if (can_payload.id >= 2048) { // is a global vehicle parameter
+      |                               ^
+../Core/Src/can.c:56:43: error: 'can_payload_t' has no member named 'value'
+   56 |                 param->value = can_payload.value;
+      |                                           ^
+../Core/Src/can.c:58:31: error: 'can_payload_t' has no member named 'id'
+   58 |         } else if (can_payload.id >= 1024) { // is a global vehicle command
+      |                               ^
+../Core/Src/can.c:60:31: error: 'can_payload_t' has no member named 'id'
+   60 |         } else if (can_payload.id >= 512) { // is in the reserved range
+      |                               ^
+../Core/Src/can.c:62:31: error: 'can_payload_t' has no member named 'id'
+   62 |         } else if (can_payload.id >= 256) { // is a string broadcast
+      |                               ^
+../Core/Src/can.c:64:31: error: 'can_payload_t' has no member named 'id'
+   64 |         } else if (can_payload.id >= 128) { // is a fault category
+      |                               ^
+../Core/Src/can.c:38:30: warning: variable 'can_payload' set but not used [-Wunused-but-set-variable]
+   38 |         static can_payload_t can_payload;
+      |                              ^~~~~~~~~~~
+../Core/Src/can.c: At top level:
+../Core/Src/can.c:20:15: warning: 'sw3_can_third_party_callback' defined but not used [-Wunused-variable]
+   20 | static void (*sw3_can_third_party_callback)(can_param_t*);
+      |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/can.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+09:57:15 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+../Core/Src/can_params.c:8:34: error: 'can_param_t' has no member named 'safe_value'; did you mean 'last_value'?
+    8 |                                 .safe_value = 0,
+      |                                  ^~~~~~~~~~
+      |                                  last_value
+../Core/Src/can_params.c:10:34: error: 'can_param_t' has no member named 'ttl'
+   10 |                                 .ttl = 10,
+      |                                  ^~~
+../Core/Src/can.c: In function 'sw3_can_interrupt_handler':
+../Core/Src/can.c:39:76: warning: passing argument 4 of 'HAL_CAN_GetRxMessage' makes pointer from integer without a cast [-Wint-conversion]
+   39 |         if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &RxHeader, can_payload.data) != HAL_OK) return;
+      |                                                                 ~~~~~~~~~~~^~~~~
+      |                                                                            |
+      |                                                                            uint64_t {aka long long unsigned int}
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:295,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/can.h:5,
+                 from ../Core/Src/can.c:1:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_can.h:695:78: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint64_t' {aka 'long long unsigned int'}
+  695 |                                        CAN_RxHeaderTypeDef *pHeader, uint8_t aData[]);
+      |                                                                      ~~~~~~~~^~~~~~~
+../Core/Src/can.c:54:9: error: expected expression before '}' token
+   54 |         } else if (can_payload.id >= 2048) { // is a global vehicle parameter
+      |         ^
+../Core/Src/can.c:54:9: warning: 'return' with a value, in function returning void [-Wreturn-type]
+../Core/Src/can.c:36:6: note: declared here
+   36 | void sw3_can_interrupt_handler(CAN_HandleTypeDef* hcan) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [Core/Src/subdir.mk:40: Core/Src/can.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+09:57:31 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+../Core/Src/can_params.c:8:34: error: 'can_param_t' has no member named 'safe_value'; did you mean 'last_value'?
+    8 |                                 .safe_value = 0,
+      |                                  ^~~~~~~~~~
+      |                                  last_value
+../Core/Src/can_params.c:10:34: error: 'can_param_t' has no member named 'ttl'
+   10 |                                 .ttl = 10,
+      |                                  ^~~
+../Core/Src/can.c: In function 'sw3_can_interrupt_handler':
+../Core/Src/can.c:39:76: warning: passing argument 4 of 'HAL_CAN_GetRxMessage' makes pointer from integer without a cast [-Wint-conversion]
+   39 |         if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &RxHeader, can_payload.data) != HAL_OK) return;
+      |                                                                 ~~~~~~~~~~~^~~~~
+      |                                                                            |
+      |                                                                            uint64_t {aka long long unsigned int}
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:295,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/can.h:5,
+                 from ../Core/Src/can.c:1:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_can.h:695:78: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint64_t' {aka 'long long unsigned int'}
+  695 |                                        CAN_RxHeaderTypeDef *pHeader, uint8_t aData[]);
+      |                                                                      ~~~~~~~~^~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+09:58:00 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+../Core/Src/can_params.c:8:34: error: 'can_param_t' has no member named 'safe_value'; did you mean 'last_value'?
+    8 |                                 .safe_value = 0,
+      |                                  ^~~~~~~~~~
+      |                                  last_value
+../Core/Src/can_params.c:10:34: error: 'can_param_t' has no member named 'ttl'
+   10 |                                 .ttl = 10,
+      |                                  ^~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+09:58:23 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc -o "Template.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\corre\coding\Software-3\Template\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Template.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Template.elf
+ 
+arm-none-eabi-size  Template.elf 
+arm-none-eabi-objdump -h -S Template.elf  > "Template.list"
+   text	   data	    bss	    dec	    hex	filename
+  12920	     44	   1804	  14768	   39b0	Template.elf
+Finished building: default.size.stdout
+ 
+Finished building: Template.list
+ 

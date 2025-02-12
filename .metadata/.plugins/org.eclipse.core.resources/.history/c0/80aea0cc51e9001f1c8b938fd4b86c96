@@ -5,9 +5,9 @@ can_params_t gv_params = {
 				.PARAM_ID = 1025,
 				.value = 0,
 				.last_value = 0,
-				.SAFE_VALUE = 0,
+				.safe_value = 0,
 				.timestamp = 0,
-				.TTL = 10,
+				.ttl = 10,
 				.flags = { .message_mode = PASSIVE, .marked_for_send = 0, .reserved = 0}
 		}
 };

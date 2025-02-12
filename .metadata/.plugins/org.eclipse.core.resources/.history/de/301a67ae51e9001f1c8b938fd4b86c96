@@ -9,7 +9,7 @@ typedef union {
 		uint32_t value;
 		uint16_t reserved;
 	};
-	uint8_t data[8];
+	uint64_t data;
 } can_payload_t;
 
 static can_param_t* gv_params_arr = (can_param_t*)&gv_params;
@@ -50,7 +50,7 @@ void sw3_can_interrupt_handler(CAN_HandleTypeDef* hcan) {
 			}
 
 	if (can_payload.id > 4095) { // not a valid ID
-		return;
+		return
 	} else if (can_payload.id >= 2048) { // is a global vehicle parameter
 		param->last_value = param->value;
 		param->value = can_payload.value;
