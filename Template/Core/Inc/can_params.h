@@ -3,10 +3,11 @@
 
 #include "can.h"
 
-typedef struct {
+typedef struct
+{
 	can_param_t speed;
 } can_params_t;
 
-extern can_params_t gv_params;
+void sw3_gv_params_init(can_params_t *param);
 
 #endif

@@ -18,6 +18,8 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "can.h"
+#include "can_params.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -47,7 +49,6 @@ TIM_HandleTypeDef htim3;
 /* USER CODE BEGIN PV */
 
 uint32_t TxMailbox;
-
 
 /* USER CODE END PV */
 

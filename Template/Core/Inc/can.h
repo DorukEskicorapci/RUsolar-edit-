@@ -3,39 +3,61 @@
 
 #include <stdint.h>
 #include "main.h"
+#include "can_params.h"
+
+// CONSTANTS are defined based on this spec
+// https://docs.google.com/document/d/1sJ9VwzolyfRb-tBFXXP6ycqGwgcbOeu7hwbXEH93hWY/edit?tab=t.0#heading=h.u8pdmic8hgeu
+#define HEARTBEAT_PARAM_ID 1024
+
+#define SHARED_IDENTIFICATION_RANGE_MIN 0
+#define SHARED_IDENTIFICATION_RANGE_MAX 127
+
+#define SHARED_FAULT_RANGE_MIN 128
+#define SHARED_FAULT_RANGE_MAX 255
+
+#define SHARED_STR_BROADCAST_RANGE_MIN 256
+#define SHARED_STR_BROADCAST_RANGE_MAX 511
+
+#define RESERVED_RANGE_MIN 512
+#define RESERVED_RANGE_MAX 1023
+
+#define GLOBAL_VEHICLE_CMD_RANGE_MIN 1024
+#define GLOBAL_VEHICLE_CMD_RANGE_MAX 2047
+
+#define GLOBAL_VEHICLE_PARAMS_RANGE_MIN 2048
+#define GLOBAL_VEHICLE_PARAMS_RANGE_MAX 4095
 
 //////////////////////////////////////////////////////////
 /////////////////////// TYPES ////////////////////////////
 //////////////////////////////////////////////////////////
 
-typedef struct {
-	unsigned char message_mode: 4, marked_for_send: 1, reserved: 3;
+typedef struct
+{
+	unsigned char message_mode : 4, marked_for_send : 1, reserved : 3;
 } internal_flags_t;
 
 // Define CAN message structure
-typedef struct {
-	// id of the message
+// CAN structure is as follows:
+// - (uint16_t) PARAM_ID	: id of the message
+// - (uint32_t) value		: the current message
+// - (uint32_t) last_value	: the previous message
+// - (uint32_t) SAFE_VALUE	: the default value in case we don't receive any messages or something went wrong
+// - (uint32_t) timestamp	: timestamp of the message
+// - (uint8_t)  TTL			: time-to-live of the message
+// - (struct internal_flags_t) flags : some flags of the message // TODO: clearer message
+typedef struct
+{
 	uint16_t PARAM_ID;
-
-	// the message itself -- current message
 	uint32_t value;
-
-	// the previous message
 	uint32_t last_value;
-
-	// the default value in case we don't receive any messages or something went wrong
 	uint32_t SAFE_VALUE;
-
 	uint32_t timestamp;
-
-	// time to live
 	uint8_t TTL;
-
-	// some flags to manage the message
 	internal_flags_t flags;
 } can_param_t;
 
-typedef enum {
+typedef enum
+{
 	PASSIVE,
 	DEPENDENCY_NO_CALLBACK,
 	DEPENCENCY_CALLBACK,
@@ -43,34 +65,46 @@ typedef enum {
 	MANUAL_BROADCAST
 } message_mode_t;
 
-typedef struct {
+typedef struct
+{
 	uint32_t board_state;
 	uint32_t system_state;
 } identification_params;
 
-typedef union {
+typedef union
+{
 	uint8_t present;
-	uint8_t nack: 1, other: 1, runtime: 1, broadcast_conflict: 1, reserved: 4;
+	uint8_t nack : 1, other : 1, runtime : 1, broadcast_conflict : 1, reserved : 4;
 } can_errors_t;
 
-extern can_errors_t sw3_can_errors;
+typedef struct
+{
+	can_errors_t errors;
+	can_params_t gv_params;
+	uint8_t can_id;
+	uint32_t board_type_id;
+} can_config_t;
 
 //////////////////////////////////////////////////////////
 ///////////////////// FUNCTIONS //////////////////////////
 //////////////////////////////////////////////////////////
 
-void sw3_can_init(CAN_HandleTypeDef*);
+void sw3_can_init(CAN_HandleTypeDef *hcan, can_config_t *config);
 
-void sw3_can_error_handler(CAN_HandleTypeDef* hcan);
+void sw3_can_error_handler(CAN_HandleTypeDef *hcan);
 
-void sw3_can_interrupt_handler(CAN_HandleTypeDef* hcan1);
+void sw3_can_interrupt_handler(CAN_HandleTypeDef *hcan);
 
 void sw3_can_loop();
 
-int sw3_set_param_mode(message_mode_t, can_param_t*);
+int sw3_set_param_mode(message_mode_t, can_param_t *);
 
-int sw3_force_send(can_param_t*);
+int sw3_force_send(can_param_t *);
 
-void sw3_can_set_third_party_callback(void (*callback)(can_param_t*));
+void sw3_can_set_third_party_callback(void (*callback)(CAN_RxHeaderTypeDef, uint8_t[8]));
+
+void sw3_can_set_gv_commands_callback(void (*callback)(uint16_t param_id, uint32_t payload));
+
+void sw3_can_set_shared_params_callback(void (*callback)(uint16_t param_id, uint32_t payload));
 
 #endif
