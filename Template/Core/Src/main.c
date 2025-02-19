@@ -15,6 +15,15 @@
   *
   ******************************************************************************
   */
+/**
+  ******************************************************************************
+  * @attention
+  * Message from the software team:
+  * - For main.c file, DO NOT add code outside of the USER CODE BEGIN - USER CODE END block
+  * as it will be overwritten or deleted during code generation.
+  ******************************************************************************
+  *
+*/
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -110,7 +119,11 @@ int main(void)
   MX_TIM2_Init();
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
+
+  // Start the CAN peripheral
   HAL_CAN_Start(&hcan1);
+
+  // Turn on interupt for hcan to receive messages on the buffer
   HAL_CAN_ActivateNotification(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
 
   /* USER CODE END 2 */
@@ -119,6 +132,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    // Content of the while loop here
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

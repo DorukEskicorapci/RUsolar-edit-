@@ -16,6 +16,15 @@
   *
   ******************************************************************************
   */
+ /**
+  ******************************************************************************
+  * @attention
+  * Message from the software team:
+  * - For main.c file, DO NOT add code outside of the USER CODE BEGIN - USER CODE END block
+  * as it will be overwritten or deleted during code generation.
+  ******************************************************************************
+  *
+*/
 /* USER CODE END Header */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
