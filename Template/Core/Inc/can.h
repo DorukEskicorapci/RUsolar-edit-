@@ -9,6 +9,9 @@
 // https://docs.google.com/document/d/1sJ9VwzolyfRb-tBFXXP6ycqGwgcbOeu7hwbXEH93hWY/edit?tab=t.0#heading=h.u8pdmic8hgeu
 #define HEARTBEAT_PARAM_ID 1024
 
+#define PARAM_ID_RANGE_MIN 0
+#define PARAM_ID_RANGE_MAX 4095
+
 #define SHARED_IDENTIFICATION_RANGE_MIN 0
 #define SHARED_IDENTIFICATION_RANGE_MAX 127
 

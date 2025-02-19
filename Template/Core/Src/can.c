@@ -1,8 +1,25 @@
+/**
+ ******************************************************************************
+ * @file    can.c
+ * @brief   This file provides code for the configuration and management
+ *          of the CAN instances.
+ ******************************************************************************
+ * @attention
+ *
+ */
+
 #include "can.h"
 #include "main.h"
 #include "can_params.h"
 #include "stm32f7xx_hal_can.h"
 
+/**
+ * Receiving CAN message payload structure
+ * - id: 16-bit parameter ID
+ * - value: 32-bit parameter value
+ * - reserved: 16-bit reserved field
+ * - data: 8-bit array of the payload as maximum size of 8 bytes
+ */
 typedef union
 {
 	struct
@@ -14,14 +31,30 @@ typedef union
 	uint8_t data[8];
 } can_payload_t;
 
+/**
+ * CAN instance. It is used to communicate with the CAN peripheral
+ * call the HAL_CAN functions
+ */
 static CAN_HandleTypeDef *can_hcan = NULL;
+
+/**
+ * CAN TX Mailbox. It is used to store the mailbox number
+ * of the last transmitted message
+ */
 static uint32_t tx_mailbox;
+
+/**
+ * CAN TX Header. It is used to store the header of the message
+ * to be transmitted
+ */
 static CAN_TxHeaderTypeDef can_tx_header;
 
 static can_param_t *gv_params_arr = NULL;
 static size_t gv_params_size = sizeof(can_params_t) / sizeof(can_param_t);
 
-// TODO: initialize the variable and check against NULL to make sure it is called
+/**
+ * CAN configuration structure. It is used to store the configuration of CAN
+ */
 static can_config_t *config = NULL;
 
 static void (*sw3_can_third_party_callback)(CAN_RxHeaderTypeDef, uint8_t[8]) = NULL;
@@ -33,8 +66,15 @@ static uint32_t hb_timestamp = 0;
 static uint8_t can_hb_pulse = 0; // 0 is on, 1 is off
 static uint8_t hb_pending = 0;
 
+/**
+ * Find a parameter by its ID
+ * @param id: 16-bit parameter ID
+ * @return can_param_t*: pointer to the parameter
+ */
 static can_param_t *find_param_by_id(uint16_t id)
 {
+	assert_param(id >= PARAM_ID_RANGE_MIN && id <= PARAM_ID_RANGE_MAX);
+
 	for (int i = 0; i < gv_params_size; i++)
 	{
 		if (id == gv_params_arr[i].PARAM_ID)
@@ -42,14 +82,26 @@ static can_param_t *find_param_by_id(uint16_t id)
 			return &gv_params_arr[i];
 		}
 	}
+
 	return NULL;
 }
 
+/**
+ * Send a CAN message
+ * @param data: 8-bit array of the payload as maximum size of 8 bytes
+ * @return HAL_StatusTypeDef: HAL status
+ */
 static HAL_StatusTypeDef send_can_message(uint8_t data[8])
 {
+	// Make sure we don't send a NULL pointer
+	assert_param(data != NULL);
+
 	return HAL_CAN_AddTxMessage(can_hcan, &can_tx_header, data, &tx_mailbox);
 }
 
+/**
+ * TODO: Not sure what this function does, will need to check later
+ */
 void heartbeat_loop()
 {
 	if (hb_message_count >= 2)
@@ -70,6 +122,9 @@ void heartbeat_loop()
 	}
 }
 
+/**
+ * TODO: Not sure what this function does, will need to check later
+ */
 void sw3_can_set_third_party_callback(void (*callback)(CAN_RxHeaderTypeDef, uint8_t[8]))
 {
 	if (callback == NULL)
@@ -77,6 +132,9 @@ void sw3_can_set_third_party_callback(void (*callback)(CAN_RxHeaderTypeDef, uint
 	sw3_can_third_party_callback = callback;
 }
 
+/**
+ * TODO: Not sure what this function does, will need to check later
+ */
 void sw3_can_set_gv_commands_callback(void (*callback)(uint16_t param_id, uint32_t payload))
 {
 	if (callback == NULL)
@@ -84,6 +142,9 @@ void sw3_can_set_gv_commands_callback(void (*callback)(uint16_t param_id, uint32
 	sw3_can_gv_commands_callback = callback;
 }
 
+/**
+ * TODO: Not sure what this function does, will need to check later
+ */
 void sw3_can_set_shared_params_callback(void (*callback)(CAN_RxHeaderTypeDef, uint16_t param_id, uint32_t payload))
 {
 	if (callback = NULL)
@@ -91,21 +152,36 @@ void sw3_can_set_shared_params_callback(void (*callback)(CAN_RxHeaderTypeDef, ui
 	sw3_can_shared_params_callback = callback;
 }
 
+/**
+ * This function is called when a message is received from CAN bus
+ * @param hcan: pointer to a CAN_HandleTypeDef structure that contains the configuration information for the specified CAN
+ * @return void
+ */
 void sw3_can_interrupt_handler(CAN_HandleTypeDef *hcan)
 {
+	// Make sure we don't have a NULL pointer
+	assert_param(hcan != NULL);
+
 	static CAN_RxHeaderTypeDef RxHeader;
 	static can_payload_t can_payload;
-	if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &RxHeader, can_payload.data) != HAL_OK)
-		return;
 
-	if (RxHeader.StdId > 127)
-	{ // device is not SW3, call third party callback
-		if (sw3_can_third_party_callback == NULL)
-			return;
-		sw3_can_third_party_callback(RxHeader, can_payload.data);
+	if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &RxHeader, can_payload.data) != HAL_OK)
+	{
 		return;
 	}
 
+	if (RxHeader.StdId < SHARED_IDENTIFICATION_RANGE_MIN || RxHeader.StdId > SHARED_IDENTIFICATION_RANGE_MAX)
+	{
+		// device is not SW3, call third party callback
+		if (sw3_can_third_party_callback == NULL)
+		{
+			return;
+		}
+
+		return sw3_can_third_party_callback(RxHeader, can_payload.data);
+	}
+
+	// Find the parameter by given ID
 	can_param_t *param = find_param_by_id(can_payload.id);
 
 	if (param == NULL)
@@ -118,10 +194,10 @@ void sw3_can_interrupt_handler(CAN_HandleTypeDef *hcan)
 	{
 		// Another board is conflicting with this board
 		sw3_can_errors.broadcast_conflict = 1;
+
 		return;
 	}
 
-	// TODO: should have a util function here to check the range
 	if (
 		can_payload.id >= SHARED_IDENTIFICATION_RANGE_MIN &&
 		can_payload.id <= SHARED_IDENTIFICATION_RANGE_MAX)
@@ -222,13 +298,22 @@ void sw3_can_interrupt_handler(CAN_HandleTypeDef *hcan)
 	// }
 }
 
+/**
+ * This function is called when a message is received from CAN bus
+ * @param hcan: pointer to a CAN_HandleTypeDef structure that contains the configuration information for the specified CAN
+ * @return void
+ */
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
+	assert_param(hcan != NULL);
+
 	sw3_can_interrupt_handler(hcan);
 }
 
 void sw3_can_error_handler(CAN_HandleTypeDef *hcan)
 {
+	assert_param(hcan != NULL);
+
 	uint32_t err = HAL_CAN_GetError(hcan);
 
 	// TODO: should handle for each case of error according to ERROR_CODE in stm32f7xx_hal_can.h specification
@@ -243,8 +328,16 @@ void sw3_can_error_handler(CAN_HandleTypeDef *hcan)
 	}
 }
 
+/**
+ * Initialize CAN bus
+ * @param hcan: pointer to a CAN_HandleTypeDef structure that contains the configuration information for the specified CAN
+ * @param config: pointer to a can_config_t structure that contains the configuration information for the specified CAN
+ * @return void
+ */
 void sw3_can_init(CAN_HandleTypeDef *hcan, can_config_t *func_config)
 {
+	assert_param(hcan != NULL && func_config != NULL);
+
 	can_hcan = hcan;
 
 	can_tx_header = {
@@ -292,16 +385,25 @@ void sw3_can_init(CAN_HandleTypeDef *hcan, can_config_t *func_config)
 	HAL_CAN_ConfigFilter(hcan, &canfilterconfig);
 }
 
+/**
+ * This function is called in the main loop to send the heartbeat and other messages
+ * @return void
+ */
 void sw3_can_loop()
 {
 	heartbeat_loop();
+
 	if (hb_pending)
 	{
 		static can_payload_t payload;
+
 		payload.id = HEARTBEAT_PARAM_ID_PARAM_ID;
 		payload.value = 0;
+
 		if (send_can_message(payload.data) == HAL_OK)
+		{
 			hb_pending = 0;
+		}
 	}
 
 	// sends general vehicle params tat are marked for send
@@ -317,8 +419,10 @@ void sw3_can_loop()
 				config->errors.runtime = 1;
 				continue;
 			}
+
 			payload.id = gv_params_arr[i].PARAM_ID;
 			payload.id = gv_params_arr[i].value;
+
 			if (send_can_message(payload.data) == HAL_OK)
 			{
 				gv_params_arr[i].flags.marked_for_send = 0;
