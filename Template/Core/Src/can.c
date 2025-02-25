@@ -66,6 +66,8 @@ static uint32_t hb_timestamp = 0;
 static uint8_t can_hb_pulse = 0; // 0 is on, 1 is off
 static uint8_t hb_pending = 0;
 
+static can_errors_t sw3_can_errors;
+
 /**
  * Find a parameter by its ID
  * @param id: 16-bit parameter ID
@@ -145,9 +147,9 @@ void sw3_can_set_gv_commands_callback(void (*callback)(uint16_t param_id, uint32
 /**
  * TODO: Not sure what this function does, will need to check later
  */
-void sw3_can_set_shared_params_callback(void (*callback)(CAN_RxHeaderTypeDef, uint16_t param_id, uint32_t payload))
+void sw3_can_set_shared_params_callback(void (*callback)(CAN_RxHeaderTypeDef , uint16_t param_id, uint32_t payload))
 {
-	if (callback = NULL)
+	if (callback == NULL)
 		return;
 	sw3_can_shared_params_callback = callback;
 }
@@ -206,7 +208,7 @@ void sw3_can_interrupt_handler(CAN_HandleTypeDef *hcan)
 		if (sw3_can_shared_params_callback == NULL)
 			return;
 
-		sw3_can_shared_params_callback(RxHeader, ca_payload.id, can_payload.value);
+		sw3_can_shared_params_callback(RxHeader, can_payload.id, can_payload.value);
 	}
 	else if (
 		can_payload.id >= SHARED_FAULT_RANGE_MIN &&
@@ -216,7 +218,7 @@ void sw3_can_interrupt_handler(CAN_HandleTypeDef *hcan)
 		if (sw3_can_shared_params_callback == NULL)
 			return;
 
-		sw3_can_shared_params_callback(RxHeader, ca_payload.id, can_payload.value);
+		sw3_can_shared_params_callback(RxHeader, can_payload.id, can_payload.value);
 	}
 	else if (
 		can_payload.id >= SHARED_STR_BROADCAST_RANGE_MIN &&
@@ -226,7 +228,7 @@ void sw3_can_interrupt_handler(CAN_HandleTypeDef *hcan)
 		if (sw3_can_shared_params_callback == NULL)
 			return;
 
-		sw3_can_shared_params_callback(RxHeader, ca_payload.id, can_payload.value);
+		sw3_can_shared_params_callback(RxHeader, can_payload.id, can_payload.value);
 	}
 	else if (
 		can_payload.id >= RESERVED_RANGE_MIN &&
@@ -272,30 +274,7 @@ void sw3_can_interrupt_handler(CAN_HandleTypeDef *hcan)
 		return;
 	}
 
-	// if (can_payload.id == HEARTBEAT_PARAM_ID) {
-	// 	hb_message_count++;
-	// 	heartbeat_loop();
-	// } else if (can_payload.id > 4095) { // not a valid ID
-	// 	return;
-	// } else if (can_payload.id >= 2048) { // is a global vehicle parameter
-	// 	param->last_value = param->value;
-	// 	param->value = can_payload.value;
-	// 	param->timestamp = HAL_GetTick();
-	// } else if (can_payload.id >= 1024) { // is a global vehicle command
-	// 	if (sw3_can_gv_commands_callback == NULL) return;
-	// 	sw3_can_gv_commands_callback(can_payload.id, can_payload.value);
-	// } else if (can_payload.id >= 512) { // is in the reserved range
-	// 	// Reserved
-	// } else if (can_payload.id >= 256) { // is a string broadcast
-	// 	if (sw3_can_shared_params_callback == NULL) return;
-	// 	sw3_can_shared_params_callback(RxHeader, ca_payload.id, can_payload.value);
-	// } else if (can_payload.id >= 128) { // is a fault category
-	// 	if (sw3_can_shared_params_callback == NULL) return;
-	// 	sw3_can_shared_params_callback(RxHeader, ca_payload.id, can_payload.value);
-	// } else { // is in the identification range
-	// 	if (sw3_can_shared_params_callback == NULL) return;
-	// 	sw3_can_shared_params_callback(RxHeader, ca_payload.id, can_payload.value);
-	// }
+
 }
 
 /**
@@ -340,20 +319,20 @@ void sw3_can_init(CAN_HandleTypeDef *hcan, can_config_t *func_config)
 
 	can_hcan = hcan;
 
-	can_tx_header = {
-		.StdId = func_config->can_id,
-		.IDE = CAN_ID_STD,
-		.RTR = CAN_RTR_DATA,
-		.DLC = 8,
-		.TransmitGlobalTime = DISABLE};
+
+	can_tx_header.StdId = func_config->can_id;
+	can_tx_header.IDE = CAN_ID_STD;
+	can_tx_header.RTR = CAN_RTR_DATA;
+	can_tx_header.DLC = 8;
+	can_tx_header.TransmitGlobalTime = DISABLE;
 
 	// Reset CAN errors state
 	config = func_config;
 	config->errors.present = 0;
 
-	sw3_gv_params_init(config->gv_params);
+	sw3_gv_params_init(&config->gv_params);
 
-	gv_params_arr = &config->gv_params;
+	gv_params_arr = (can_param_t*)&config->gv_params;
 	gv_params_size = sizeof(can_params_t) / sizeof(can_param_t);
 
 	// Start CAN with given config
@@ -397,7 +376,7 @@ void sw3_can_loop()
 	{
 		static can_payload_t payload;
 
-		payload.id = HEARTBEAT_PARAM_ID_PARAM_ID;
+		payload.id = HEARTBEAT_PARAM_ID;
 		payload.value = 0;
 
 		if (send_can_message(payload.data) == HAL_OK)

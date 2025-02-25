@@ -1048,3 +1048,703 @@ Finished building: default.size.stdout
  
 Finished building: Template.list
  
+20:27:51 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f7xx_hal_msp.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f7xx_hal_msp.d" -MT"Core/Src/stm32f7xx_hal_msp.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f7xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32f7xx_it.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f7xx_it.d" -MT"Core/Src/stm32f7xx_it.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f7xx_it.o"
+In file included from ../Core/Inc/can.h:6,
+                 from ../Core/Src/can.c:11:
+../Core/Inc/can_params.h:8:9: error: unknown type name 'can_param_t'
+    8 |         can_param_t speed;
+      |         ^~~~~~~~~~~
+In file included from ../Core/Inc/can.h:6,
+                 from ../Core/Src/main.c:30:
+../Core/Inc/can_params.h:8:9: error: unknown type name 'can_param_t'
+    8 |         can_param_t speed;
+      |         ^~~~~~~~~~~
+In file included from ../Core/Inc/can_params.h:4,
+                 from ../Core/Src/can_params.c:1:
+../Core/Inc/can.h:86:9: error: unknown type name 'can_params_t'
+   86 |         can_params_t gv_params;
+      |         ^~~~~~~~~~~~
+../Core/Src/can.c:148:6: error: conflicting types for 'sw3_can_set_shared_params_callback'; have 'void(void (*)(CAN_RxHeaderTypeDef,  uint16_t,  uint32_t))' {aka 'void(void (*)(CAN_RxHeaderTypeDef,  short unsigned int,  long unsigned int))'}
+  148 | void sw3_can_set_shared_params_callback(void (*callback)(CAN_RxHeaderTypeDef, uint16_t param_id, uint32_t payload))
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/can_params.c: In function 'sw3_gv_params_init':
+../Core/Src/can_params.c:7:22: error: expected expression before '{' token
+    7 |         *gv_params = {
+      |                      ^
+../Core/Inc/can.h:111:6: note: previous declaration of 'sw3_can_set_shared_params_callback' with type 'void(void (*)(uint16_t,  uint32_t))' {aka 'void(void (*)(short unsigned int,  long unsigned int))'}
+  111 | void sw3_can_set_shared_params_callback(void (*callback)(uint16_t param_id, uint32_t payload));
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/can.c: In function 'sw3_can_set_shared_params_callback':
+../Core/Src/can.c:150:13: warning: suggest parentheses around assignment used as truth value [-Wparentheses]
+  150 |         if (callback = NULL)
+      |             ^~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+../Core/Src/can.c: In function 'sw3_can_interrupt_handler':
+../Core/Src/can.c:196:17: error: 'sw3_can_errors' undeclared (first use in this function); did you mean 'sw3_can_loop'?
+  196 |                 sw3_can_errors.broadcast_conflict = 1;
+      |                 ^~~~~~~~~~~~~~
+      |                 sw3_can_loop
+../Core/Src/can.c:196:17: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/can.c:209:58: error: 'ca_payload' undeclared (first use in this function); did you mean 'can_payload'?
+  209 |                 sw3_can_shared_params_callback(RxHeader, ca_payload.id, can_payload.value);
+      |                                                          ^~~~~~~~~~
+      |                                                          can_payload
+../Core/Src/can.c: In function 'sw3_can_error_handler':
+../Core/Src/can.c:323:17: error: 'sw3_can_errors' undeclared (first use in this function); did you mean 'sw3_can_loop'?
+  323 |                 sw3_can_errors.other = 1;
+      |                 ^~~~~~~~~~~~~~
+      |                 sw3_can_loop
+../Core/Src/can.c: In function 'sw3_can_init':
+../Core/Src/can.c:343:25: error: expected expression before '{' token
+  343 |         can_tx_header = {
+      |                         ^
+../Core/Src/can.c:354:34: error: incompatible type for argument 1 of 'sw3_gv_params_init'
+  354 |         sw3_gv_params_init(config->gv_params);
+      |                            ~~~~~~^~~~~~~~~~~
+      |                                  |
+      |                                  can_params_t
+../Core/Inc/can_params.h:11:39: note: expected 'can_params_t *' but argument is of type 'can_params_t'
+   11 | void sw3_gv_params_init(can_params_t *param);
+      |                         ~~~~~~~~~~~~~~^~~~~
+../Core/Src/can.c:356:23: warning: assignment to 'can_param_t *' from incompatible pointer type 'can_params_t *' [-Wincompatible-pointer-types]
+  356 |         gv_params_arr = &config->gv_params;
+      |                       ^
+../Core/Src/can.c: In function 'sw3_can_loop':
+../Core/Src/can.c:400:30: error: 'HEARTBEAT_PARAM_ID_PARAM_ID' undeclared (first use in this function); did you mean 'HEARTBEAT_PARAM_ID'?
+  400 |                 payload.id = HEARTBEAT_PARAM_ID_PARAM_ID;
+      |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                              HEARTBEAT_PARAM_ID
+make: *** [Core/Src/subdir.mk:40: Core/Src/can.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+20:30:25 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+In file included from ../Core/Inc/can.h:6,
+                 from ../Core/Src/can.c:11:
+../Core/Inc/can_params.h:8:9: error: unknown type name 'can_param_t'
+    8 |         can_param_t speed;
+      |         ^~~~~~~~~~~
+In file included from ../Core/Inc/can_params.h:4,
+                 from ../Core/Src/can_params.c:1:
+../Core/Inc/can.h:86:9: error: unknown type name 'can_params_t'
+   86 |         can_params_t gv_params;
+      |         ^~~~~~~~~~~~
+../Core/Src/can_params.c: In function 'sw3_gv_params_init':
+../Core/Src/can_params.c:7:22: error: expected expression before '{' token
+    7 |         *gv_params = {
+      |                      ^
+In file included from ../Core/Inc/can.h:6,
+                 from ../Core/Src/main.c:30:
+../Core/Inc/can_params.h:8:9: error: unknown type name 'can_param_t'
+    8 |         can_param_t speed;
+      |         ^~~~~~~~~~~
+../Core/Src/can.c: In function 'sw3_can_interrupt_handler':
+../Core/Src/can.c:196:17: error: 'sw3_can_errors' undeclared (first use in this function); did you mean 'sw3_can_loop'?
+  196 |                 sw3_can_errors.broadcast_conflict = 1;
+      |                 ^~~~~~~~~~~~~~
+      |                 sw3_can_loop
+../Core/Src/can.c:196:17: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/can.c:209:58: error: 'ca_payload' undeclared (first use in this function); did you mean 'can_payload'?
+  209 |                 sw3_can_shared_params_callback(RxHeader, ca_payload.id, can_payload.value);
+      |                                                          ^~~~~~~~~~
+      |                                                          can_payload
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+../Core/Src/can.c: In function 'sw3_can_error_handler':
+../Core/Src/can.c:323:17: error: 'sw3_can_errors' undeclared (first use in this function); did you mean 'sw3_can_loop'?
+  323 |                 sw3_can_errors.other = 1;
+      |                 ^~~~~~~~~~~~~~
+      |                 sw3_can_loop
+../Core/Src/can.c: In function 'sw3_can_init':
+../Core/Src/can.c:343:25: error: expected expression before '{' token
+  343 |         can_tx_header = {
+      |                         ^
+../Core/Src/can.c:354:34: error: incompatible type for argument 1 of 'sw3_gv_params_init'
+  354 |         sw3_gv_params_init(config->gv_params);
+      |                            ~~~~~~^~~~~~~~~~~
+      |                                  |
+      |                                  can_params_t
+../Core/Inc/can_params.h:11:39: note: expected 'can_params_t *' but argument is of type 'can_params_t'
+   11 | void sw3_gv_params_init(can_params_t *param);
+      |                         ~~~~~~~~~~~~~~^~~~~
+../Core/Src/can.c:356:23: warning: assignment to 'can_param_t *' from incompatible pointer type 'can_params_t *' [-Wincompatible-pointer-types]
+  356 |         gv_params_arr = &config->gv_params;
+      |                       ^
+../Core/Src/can.c: In function 'sw3_can_loop':
+../Core/Src/can.c:400:30: error: 'HEARTBEAT_PARAM_ID_PARAM_ID' undeclared (first use in this function); did you mean 'HEARTBEAT_PARAM_ID'?
+  400 |                 payload.id = HEARTBEAT_PARAM_ID_PARAM_ID;
+      |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                              HEARTBEAT_PARAM_ID
+make: *** [Core/Src/subdir.mk:40: Core/Src/can.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+20:33:54 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+In file included from ../Core/Inc/can.h:6,
+                 from ../Core/Src/can.c:11:
+../Core/Inc/can_params.h:8:9: error: unknown type name 'can_param_t'
+    8 |         can_param_t speed;
+      |         ^~~~~~~~~~~
+In file included from ../Core/Inc/can_params.h:4,
+                 from ../Core/Src/can_params.c:1:
+../Core/Inc/can.h:86:9: error: unknown type name 'can_params_t'
+   86 |         can_params_t gv_params;
+      |         ^~~~~~~~~~~~
+../Core/Src/can_params.c: In function 'sw3_gv_params_init':
+../Core/Src/can_params.c:7:22: error: expected expression before '{' token
+    7 |         *gv_params = {
+      |                      ^
+In file included from ../Core/Inc/can.h:6,
+                 from ../Core/Src/main.c:30:
+../Core/Inc/can_params.h:8:9: error: unknown type name 'can_param_t'
+    8 |         can_param_t speed;
+      |         ^~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/can.c: In function 'sw3_can_interrupt_handler':
+../Core/Src/can.c:196:17: error: 'sw3_can_errors' undeclared (first use in this function); did you mean 'sw3_can_loop'?
+  196 |                 sw3_can_errors.broadcast_conflict = 1;
+      |                 ^~~~~~~~~~~~~~
+      |                 sw3_can_loop
+../Core/Src/can.c:196:17: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/can.c:219:58: error: 'ca_payload' undeclared (first use in this function); did you mean 'can_payload'?
+  219 |                 sw3_can_shared_params_callback(RxHeader, ca_payload.id, can_payload.value);
+      |                                                          ^~~~~~~~~~
+      |                                                          can_payload
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+../Core/Src/can.c: In function 'sw3_can_error_handler':
+../Core/Src/can.c:323:17: error: 'sw3_can_errors' undeclared (first use in this function); did you mean 'sw3_can_loop'?
+  323 |                 sw3_can_errors.other = 1;
+      |                 ^~~~~~~~~~~~~~
+      |                 sw3_can_loop
+../Core/Src/can.c: In function 'sw3_can_init':
+../Core/Src/can.c:343:25: error: expected expression before '{' token
+  343 |         can_tx_header = {
+      |                         ^
+../Core/Src/can.c:354:34: error: incompatible type for argument 1 of 'sw3_gv_params_init'
+  354 |         sw3_gv_params_init(config->gv_params);
+      |                            ~~~~~~^~~~~~~~~~~
+      |                                  |
+      |                                  can_params_t
+../Core/Inc/can_params.h:11:39: note: expected 'can_params_t *' but argument is of type 'can_params_t'
+   11 | void sw3_gv_params_init(can_params_t *param);
+      |                         ~~~~~~~~~~~~~~^~~~~
+../Core/Src/can.c:356:23: warning: assignment to 'can_param_t *' from incompatible pointer type 'can_params_t *' [-Wincompatible-pointer-types]
+  356 |         gv_params_arr = &config->gv_params;
+      |                       ^
+../Core/Src/can.c: In function 'sw3_can_loop':
+../Core/Src/can.c:400:30: error: 'HEARTBEAT_PARAM_ID_PARAM_ID' undeclared (first use in this function); did you mean 'HEARTBEAT_PARAM_ID'?
+  400 |                 payload.id = HEARTBEAT_PARAM_ID_PARAM_ID;
+      |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                              HEARTBEAT_PARAM_ID
+make: *** [Core/Src/subdir.mk:40: Core/Src/can.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+20:34:11 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+In file included from ../Core/Inc/can.h:6,
+                 from ../Core/Src/can.c:11:
+../Core/Inc/can_params.h:8:9: error: unknown type name 'can_param_t'
+    8 |         can_param_t speed;
+      |         ^~~~~~~~~~~
+In file included from ../Core/Inc/can_params.h:4,
+                 from ../Core/Src/can_params.c:1:
+../Core/Inc/can.h:86:9: error: unknown type name 'can_params_t'
+   86 |         can_params_t gv_params;
+      |         ^~~~~~~~~~~~
+In file included from ../Core/Inc/can.h:6,
+                 from ../Core/Src/main.c:30:
+../Core/Inc/can_params.h:8:9: error: unknown type name 'can_param_t'
+    8 |         can_param_t speed;
+      |         ^~~~~~~~~~~
+../Core/Src/can_params.c: In function 'sw3_gv_params_init':
+../Core/Src/can_params.c:7:22: error: expected expression before '{' token
+    7 |         *gv_params = {
+      |                      ^
+../Core/Src/can.c: In function 'sw3_can_interrupt_handler':
+../Core/Src/can.c:196:17: error: 'sw3_can_errors' undeclared (first use in this function); did you mean 'sw3_can_loop'?
+  196 |                 sw3_can_errors.broadcast_conflict = 1;
+      |                 ^~~~~~~~~~~~~~
+      |                 sw3_can_loop
+../Core/Src/can.c:196:17: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+../Core/Src/can.c:219:58: error: 'ca_payload' undeclared (first use in this function); did you mean 'can_payload'?
+  219 |                 sw3_can_shared_params_callback(RxHeader, ca_payload.id, can_payload.value);
+      |                                                          ^~~~~~~~~~
+      |                                                          can_payload
+../Core/Src/can.c: In function 'sw3_can_error_handler':
+../Core/Src/can.c:323:17: error: 'sw3_can_errors' undeclared (first use in this function); did you mean 'sw3_can_loop'?
+  323 |                 sw3_can_errors.other = 1;
+      |                 ^~~~~~~~~~~~~~
+      |                 sw3_can_loop
+../Core/Src/can.c: In function 'sw3_can_init':
+../Core/Src/can.c:343:25: error: expected expression before '{' token
+  343 |         can_tx_header = {
+      |                         ^
+../Core/Src/can.c:354:34: error: incompatible type for argument 1 of 'sw3_gv_params_init'
+  354 |         sw3_gv_params_init(config->gv_params);
+      |                            ~~~~~~^~~~~~~~~~~
+      |                                  |
+      |                                  can_params_t
+../Core/Inc/can_params.h:11:39: note: expected 'can_params_t *' but argument is of type 'can_params_t'
+   11 | void sw3_gv_params_init(can_params_t *param);
+      |                         ~~~~~~~~~~~~~~^~~~~
+../Core/Src/can.c:356:23: warning: assignment to 'can_param_t *' from incompatible pointer type 'can_params_t *' [-Wincompatible-pointer-types]
+  356 |         gv_params_arr = &config->gv_params;
+      |                       ^
+make: *** [Core/Src/subdir.mk:40: Core/Src/can.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+20:35:15 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+In file included from ../Core/Inc/can.h:6,
+                 from ../Core/Src/can.c:11:
+../Core/Inc/can_params.h:8:9: error: unknown type name 'can_param_t'
+    8 |         can_param_t speed;
+      |         ^~~~~~~~~~~
+In file included from ../Core/Inc/can_params.h:4,
+                 from ../Core/Src/can_params.c:1:
+../Core/Inc/can.h:86:9: error: unknown type name 'can_params_t'
+   86 |         can_params_t gv_params;
+      |         ^~~~~~~~~~~~
+../Core/Src/can_params.c: In function 'sw3_gv_params_init':
+../Core/Src/can_params.c:7:22: error: expected expression before '{' token
+    7 |         *gv_params = {
+      |                      ^
+In file included from ../Core/Inc/can.h:6,
+                 from ../Core/Src/main.c:30:
+../Core/Inc/can_params.h:8:9: error: unknown type name 'can_param_t'
+    8 |         can_param_t speed;
+      |         ^~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+../Core/Src/can.c: In function 'sw3_can_interrupt_handler':
+../Core/Src/can.c:196:17: error: 'sw3_can_errors' undeclared (first use in this function); did you mean 'sw3_can_loop'?
+  196 |                 sw3_can_errors.broadcast_conflict = 1;
+      |                 ^~~~~~~~~~~~~~
+      |                 sw3_can_loop
+../Core/Src/can.c:196:17: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/can.c:229:58: error: 'ca_payload' undeclared (first use in this function); did you mean 'can_payload'?
+  229 |                 sw3_can_shared_params_callback(RxHeader, ca_payload.id, can_payload.value);
+      |                                                          ^~~~~~~~~~
+      |                                                          can_payload
+../Core/Src/can.c: In function 'sw3_can_error_handler':
+../Core/Src/can.c:300:17: error: 'sw3_can_errors' undeclared (first use in this function); did you mean 'sw3_can_loop'?
+  300 |                 sw3_can_errors.other = 1;
+      |                 ^~~~~~~~~~~~~~
+      |                 sw3_can_loop
+../Core/Src/can.c: In function 'sw3_can_init':
+../Core/Src/can.c:331:34: error: incompatible type for argument 1 of 'sw3_gv_params_init'
+  331 |         sw3_gv_params_init(config->gv_params);
+      |                            ~~~~~~^~~~~~~~~~~
+      |                                  |
+      |                                  can_params_t
+../Core/Inc/can_params.h:11:39: note: expected 'can_params_t *' but argument is of type 'can_params_t'
+   11 | void sw3_gv_params_init(can_params_t *param);
+      |                         ~~~~~~~~~~~~~~^~~~~
+../Core/Src/can.c:333:23: warning: assignment to 'can_param_t *' from incompatible pointer type 'can_params_t *' [-Wincompatible-pointer-types]
+  333 |         gv_params_arr = &config->gv_params;
+      |                       ^
+../Core/Src/can.c:320:29: warning: unused variable 'can_tx_header' [-Wunused-variable]
+  320 |         CAN_TxHeaderTypeDef can_tx_header = {
+      |                             ^~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/can.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+20:42:58 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+In file included from ../Core/Src/can_params.c:1:
+../Core/Inc/can_params.h:15:9: error: unknown type name 'uint16_t'
+   15 |         uint16_t PARAM_ID;
+      |         ^~~~~~~~
+../Core/Inc/can_params.h:16:9: error: unknown type name 'uint32_t'
+   16 |         uint32_t value;
+      |         ^~~~~~~~
+../Core/Inc/can_params.h:17:9: error: unknown type name 'uint32_t'
+   17 |         uint32_t last_value;
+      |         ^~~~~~~~
+../Core/Inc/can_params.h:18:9: error: unknown type name 'uint32_t'
+   18 |         uint32_t SAFE_VALUE;
+      |         ^~~~~~~~
+../Core/Inc/can_params.h:19:9: error: unknown type name 'uint32_t'
+   19 |         uint32_t timestamp;
+      |         ^~~~~~~~
+../Core/Inc/can_params.h:20:9: error: unknown type name 'uint8_t'
+   20 |         uint8_t TTL;
+      |         ^~~~~~~
+../Core/Inc/can_params.h:21:9: error: unknown type name 'internal_flags_t'
+   21 |         internal_flags_t flags;
+      |         ^~~~~~~~~~~~~~~~
+../Core/Src/can_params.c: In function 'sw3_gv_params_init':
+../Core/Src/can_params.c:7:22: error: expected expression before '{' token
+    7 |         *gv_params = {
+      |                      ^
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+make: *** Waiting for unfinished jobs....
+In file included from ../Core/Inc/can.h:6,
+                 from ../Core/Src/can.c:11:
+../Core/Inc/can_params.h:21:9: error: unknown type name 'internal_flags_t'
+   21 |         internal_flags_t flags;
+      |         ^~~~~~~~~~~~~~~~
+../Core/Src/can.c: In function 'sw3_can_interrupt_handler':
+../Core/Src/can.c:192:25: error: request for member 'message_mode' in something not a structure or union
+  192 |         if (param->flags.message_mode == AUTO_BROADCAST ||
+      |                         ^
+../Core/Src/can.c:193:29: error: request for member 'message_mode' in something not a structure or union
+  193 |                 param->flags.message_mode == MANUAL_BROADCAST)
+      |                             ^
+In file included from ../Core/Inc/can.h:6,
+                 from ../Core/Src/main.c:30:
+../Core/Inc/can_params.h:21:9: error: unknown type name 'internal_flags_t'
+   21 |         internal_flags_t flags;
+      |         ^~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+../Core/Src/can.c:196:17: error: 'sw3_can_errors' undeclared (first use in this function); did you mean 'sw3_can_loop'?
+  196 |                 sw3_can_errors.broadcast_conflict = 1;
+      |                 ^~~~~~~~~~~~~~
+      |                 sw3_can_loop
+../Core/Src/can.c:196:17: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/can.c:229:58: error: 'ca_payload' undeclared (first use in this function); did you mean 'can_payload'?
+  229 |                 sw3_can_shared_params_callback(RxHeader, ca_payload.id, can_payload.value);
+      |                                                          ^~~~~~~~~~
+      |                                                          can_payload
+../Core/Src/can.c: In function 'sw3_can_error_handler':
+../Core/Src/can.c:300:17: error: 'sw3_can_errors' undeclared (first use in this function); did you mean 'sw3_can_loop'?
+  300 |                 sw3_can_errors.other = 1;
+      |                 ^~~~~~~~~~~~~~
+      |                 sw3_can_loop
+../Core/Src/can.c: In function 'sw3_can_init':
+../Core/Src/can.c:331:34: error: incompatible type for argument 1 of 'sw3_gv_params_init'
+  331 |         sw3_gv_params_init(config->gv_params);
+      |                            ~~~~~~^~~~~~~~~~~
+      |                                  |
+      |                                  can_params_t
+../Core/Inc/can_params.h:29:39: note: expected 'can_params_t *' but argument is of type 'can_params_t'
+   29 | void sw3_gv_params_init(can_params_t *param);
+      |                         ~~~~~~~~~~~~~~^~~~~
+../Core/Src/can.c:333:23: warning: assignment to 'can_param_t *' from incompatible pointer type 'can_params_t *' [-Wincompatible-pointer-types]
+  333 |         gv_params_arr = &config->gv_params;
+      |                       ^
+../Core/Src/can.c:320:29: warning: unused variable 'can_tx_header' [-Wunused-variable]
+  320 |         CAN_TxHeaderTypeDef can_tx_header = {
+      |                             ^~~~~~~~~~~~~
+../Core/Src/can.c: In function 'sw3_can_loop':
+../Core/Src/can.c:391:43: error: request for member 'marked_for_send' in something not a structure or union
+  391 |                 if (gv_params_arr[i].flags.marked_for_send)
+      |                                           ^
+../Core/Src/can.c:393:51: error: request for member 'message_mode' in something not a structure or union
+  393 |                         if (gv_params_arr[i].flags.message_mode != AUTO_BROADCAST ||
+      |                                                   ^
+../Core/Src/can.c:394:55: error: request for member 'message_mode' in something not a structure or union
+  394 |                                 gv_params_arr[i].flags.message_mode != MANUAL_BROADCAST)
+      |                                                       ^
+../Core/Src/can.c:405:55: error: request for member 'marked_for_send' in something not a structure or union
+  405 |                                 gv_params_arr[i].flags.marked_for_send = 0;
+      |                                                       ^
+make: *** [Core/Src/subdir.mk:40: Core/Src/can.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+20:43:12 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+In file included from ../Core/Src/can_params.c:1:
+../Core/Inc/can_params.h:23:9: error: unknown type name 'internal_flags_t'
+   23 |         internal_flags_t flags;
+      |         ^~~~~~~~~~~~~~~~
+../Core/Src/can_params.c: In function 'sw3_gv_params_init':
+../Core/Src/can_params.c:7:22: error: expected expression before '{' token
+    7 |         *gv_params = {
+      |                      ^
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+make: *** Waiting for unfinished jobs....
+In file included from ../Core/Inc/can.h:6,
+                 from ../Core/Src/can.c:11:
+../Core/Inc/can_params.h:23:9: error: unknown type name 'internal_flags_t'
+   23 |         internal_flags_t flags;
+      |         ^~~~~~~~~~~~~~~~
+../Core/Src/can.c: In function 'sw3_can_interrupt_handler':
+../Core/Src/can.c:192:25: error: request for member 'message_mode' in something not a structure or union
+  192 |         if (param->flags.message_mode == AUTO_BROADCAST ||
+      |                         ^
+../Core/Src/can.c:193:29: error: request for member 'message_mode' in something not a structure or union
+  193 |                 param->flags.message_mode == MANUAL_BROADCAST)
+      |                             ^
+In file included from ../Core/Inc/can.h:6,
+                 from ../Core/Src/main.c:30:
+../Core/Inc/can_params.h:23:9: error: unknown type name 'internal_flags_t'
+   23 |         internal_flags_t flags;
+      |         ^~~~~~~~~~~~~~~~
+../Core/Src/can.c:196:17: error: 'sw3_can_errors' undeclared (first use in this function); did you mean 'sw3_can_loop'?
+  196 |                 sw3_can_errors.broadcast_conflict = 1;
+      |                 ^~~~~~~~~~~~~~
+      |                 sw3_can_loop
+../Core/Src/can.c:196:17: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/can.c:229:58: error: 'ca_payload' undeclared (first use in this function); did you mean 'can_payload'?
+  229 |                 sw3_can_shared_params_callback(RxHeader, ca_payload.id, can_payload.value);
+      |                                                          ^~~~~~~~~~
+      |                                                          can_payload
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+../Core/Src/can.c: In function 'sw3_can_error_handler':
+../Core/Src/can.c:300:17: error: 'sw3_can_errors' undeclared (first use in this function); did you mean 'sw3_can_loop'?
+  300 |                 sw3_can_errors.other = 1;
+      |                 ^~~~~~~~~~~~~~
+      |                 sw3_can_loop
+../Core/Src/can.c: In function 'sw3_can_init':
+../Core/Src/can.c:331:34: error: incompatible type for argument 1 of 'sw3_gv_params_init'
+  331 |         sw3_gv_params_init(config->gv_params);
+      |                            ~~~~~~^~~~~~~~~~~
+      |                                  |
+      |                                  can_params_t
+../Core/Inc/can_params.h:31:39: note: expected 'can_params_t *' but argument is of type 'can_params_t'
+   31 | void sw3_gv_params_init(can_params_t *param);
+      |                         ~~~~~~~~~~~~~~^~~~~
+../Core/Src/can.c:333:23: warning: assignment to 'can_param_t *' from incompatible pointer type 'can_params_t *' [-Wincompatible-pointer-types]
+  333 |         gv_params_arr = &config->gv_params;
+      |                       ^
+../Core/Src/can.c:320:29: warning: unused variable 'can_tx_header' [-Wunused-variable]
+  320 |         CAN_TxHeaderTypeDef can_tx_header = {
+      |                             ^~~~~~~~~~~~~
+../Core/Src/can.c: In function 'sw3_can_loop':
+../Core/Src/can.c:391:43: error: request for member 'marked_for_send' in something not a structure or union
+  391 |                 if (gv_params_arr[i].flags.marked_for_send)
+      |                                           ^
+../Core/Src/can.c:393:51: error: request for member 'message_mode' in something not a structure or union
+  393 |                         if (gv_params_arr[i].flags.message_mode != AUTO_BROADCAST ||
+      |                                                   ^
+../Core/Src/can.c:394:55: error: request for member 'message_mode' in something not a structure or union
+  394 |                                 gv_params_arr[i].flags.message_mode != MANUAL_BROADCAST)
+      |                                                       ^
+../Core/Src/can.c:405:55: error: request for member 'marked_for_send' in something not a structure or union
+  405 |                                 gv_params_arr[i].flags.marked_for_send = 0;
+      |                                                       ^
+make: *** [Core/Src/subdir.mk:40: Core/Src/can.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+20:45:15 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/can_params.c: In function 'sw3_gv_params_init':
+../Core/Src/can_params.c:7:22: error: expected expression before '{' token
+    7 |         *gv_params = {
+      |                      ^
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/can.c: In function 'sw3_can_interrupt_handler':
+../Core/Src/can.c:196:17: error: 'sw3_can_errors' undeclared (first use in this function); did you mean 'sw3_can_loop'?
+  196 |                 sw3_can_errors.broadcast_conflict = 1;
+      |                 ^~~~~~~~~~~~~~
+      |                 sw3_can_loop
+../Core/Src/can.c:196:17: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/can.c:229:58: error: 'ca_payload' undeclared (first use in this function); did you mean 'can_payload'?
+  229 |                 sw3_can_shared_params_callback(RxHeader, ca_payload.id, can_payload.value);
+      |                                                          ^~~~~~~~~~
+      |                                                          can_payload
+../Core/Src/can.c: In function 'sw3_can_error_handler':
+../Core/Src/can.c:300:17: error: 'sw3_can_errors' undeclared (first use in this function); did you mean 'sw3_can_loop'?
+  300 |                 sw3_can_errors.other = 1;
+      |                 ^~~~~~~~~~~~~~
+      |                 sw3_can_loop
+../Core/Src/can.c: In function 'sw3_can_init':
+../Core/Src/can.c:331:34: error: incompatible type for argument 1 of 'sw3_gv_params_init'
+  331 |         sw3_gv_params_init(config->gv_params);
+      |                            ~~~~~~^~~~~~~~~~~
+      |                                  |
+      |                                  can_params_t
+In file included from ../Core/Inc/can.h:6,
+                 from ../Core/Src/can.c:11:
+../Core/Inc/can_params.h:36:39: note: expected 'can_params_t *' but argument is of type 'can_params_t'
+   36 | void sw3_gv_params_init(can_params_t *param);
+      |                         ~~~~~~~~~~~~~~^~~~~
+../Core/Src/can.c:333:23: warning: assignment to 'can_param_t *' from incompatible pointer type 'can_params_t *' [-Wincompatible-pointer-types]
+  333 |         gv_params_arr = &config->gv_params;
+      |                       ^
+../Core/Src/can.c:320:29: warning: unused variable 'can_tx_header' [-Wunused-variable]
+  320 |         CAN_TxHeaderTypeDef can_tx_header = {
+      |                             ^~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/can.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+20:48:07 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+../Core/Src/can_params.c: In function 'sw3_gv_params_init':
+../Core/Src/can_params.c:15:67: error: 'PASSIVE' undeclared (first use in this function)
+   15 |                                         .flags = {.message_mode = PASSIVE, .marked_for_send = 0, .reserved = 0}
+      |                                                                   ^~~~~~~
+../Core/Src/can_params.c:15:67: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/can.c: In function 'sw3_can_interrupt_handler':
+../Core/Src/can.c:196:17: error: 'sw3_can_errors' undeclared (first use in this function); did you mean 'sw3_can_loop'?
+  196 |                 sw3_can_errors.broadcast_conflict = 1;
+      |                 ^~~~~~~~~~~~~~
+      |                 sw3_can_loop
+../Core/Src/can.c:196:17: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/can.c:229:58: error: 'ca_payload' undeclared (first use in this function); did you mean 'can_payload'?
+  229 |                 sw3_can_shared_params_callback(RxHeader, ca_payload.id, can_payload.value);
+      |                                                          ^~~~~~~~~~
+      |                                                          can_payload
+../Core/Src/can.c: In function 'sw3_can_error_handler':
+../Core/Src/can.c:300:17: error: 'sw3_can_errors' undeclared (first use in this function); did you mean 'sw3_can_loop'?
+  300 |                 sw3_can_errors.other = 1;
+      |                 ^~~~~~~~~~~~~~
+      |                 sw3_can_loop
+../Core/Src/can.c: In function 'sw3_can_init':
+../Core/Src/can.c:331:34: error: incompatible type for argument 1 of 'sw3_gv_params_init'
+  331 |         sw3_gv_params_init(config->gv_params);
+      |                            ~~~~~~^~~~~~~~~~~
+      |                                  |
+      |                                  can_params_t
+In file included from ../Core/Inc/can.h:6,
+                 from ../Core/Src/can.c:11:
+../Core/Inc/can_params.h:36:39: note: expected 'can_params_t *' but argument is of type 'can_params_t'
+   36 | void sw3_gv_params_init(can_params_t *param);
+      |                         ~~~~~~~~~~~~~~^~~~~
+../Core/Src/can.c:333:23: warning: assignment to 'can_param_t *' from incompatible pointer type 'can_params_t *' [-Wincompatible-pointer-types]
+  333 |         gv_params_arr = &config->gv_params;
+      |                       ^
+../Core/Src/can.c:320:29: warning: unused variable 'can_tx_header' [-Wunused-variable]
+  320 |         CAN_TxHeaderTypeDef can_tx_header = {
+      |                             ^~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/can.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+20:50:10 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/can.c: In function 'sw3_can_interrupt_handler':
+../Core/Src/can.c:196:17: error: 'sw3_can_errors' undeclared (first use in this function); did you mean 'sw3_can_loop'?
+  196 |                 sw3_can_errors.broadcast_conflict = 1;
+      |                 ^~~~~~~~~~~~~~
+      |                 sw3_can_loop
+../Core/Src/can.c:196:17: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/can.c:229:58: error: 'ca_payload' undeclared (first use in this function); did you mean 'can_payload'?
+  229 |                 sw3_can_shared_params_callback(RxHeader, ca_payload.id, can_payload.value);
+      |                                                          ^~~~~~~~~~
+      |                                                          can_payload
+../Core/Src/can.c: In function 'sw3_can_error_handler':
+../Core/Src/can.c:300:17: error: 'sw3_can_errors' undeclared (first use in this function); did you mean 'sw3_can_loop'?
+  300 |                 sw3_can_errors.other = 1;
+      |                 ^~~~~~~~~~~~~~
+      |                 sw3_can_loop
+../Core/Src/can.c: In function 'sw3_can_init':
+../Core/Src/can.c:331:34: error: incompatible type for argument 1 of 'sw3_gv_params_init'
+  331 |         sw3_gv_params_init(config->gv_params);
+      |                            ~~~~~~^~~~~~~~~~~
+      |                                  |
+      |                                  can_params_t
+In file included from ../Core/Inc/can.h:6,
+                 from ../Core/Src/can.c:11:
+../Core/Inc/can_params.h:45:39: note: expected 'can_params_t *' but argument is of type 'can_params_t'
+   45 | void sw3_gv_params_init(can_params_t *param);
+      |                         ~~~~~~~~~~~~~~^~~~~
+../Core/Src/can.c:333:23: warning: assignment to 'can_param_t *' from incompatible pointer type 'can_params_t *' [-Wincompatible-pointer-types]
+  333 |         gv_params_arr = &config->gv_params;
+      |                       ^
+../Core/Src/can.c:320:29: warning: unused variable 'can_tx_header' [-Wunused-variable]
+  320 |         CAN_TxHeaderTypeDef can_tx_header = {
+      |                             ^~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/can.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+20:52:26 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+../Core/Src/can.c: In function 'sw3_can_interrupt_handler':
+../Core/Src/can.c:231:58: error: 'ca_payload' undeclared (first use in this function); did you mean 'can_payload'?
+  231 |                 sw3_can_shared_params_callback(RxHeader, ca_payload.id, can_payload.value);
+      |                                                          ^~~~~~~~~~
+      |                                                          can_payload
+../Core/Src/can.c:231:58: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/can.c: In function 'sw3_can_init':
+../Core/Src/can.c:335:23: warning: assignment to 'can_param_t *' from incompatible pointer type 'can_params_t *' [-Wincompatible-pointer-types]
+  335 |         gv_params_arr = &config->gv_params;
+      |                       ^
+../Core/Src/can.c:322:29: warning: unused variable 'can_tx_header' [-Wunused-variable]
+  322 |         CAN_TxHeaderTypeDef can_tx_header = {
+      |                             ^~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/can.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+20:52:39 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+../Core/Src/can.c: In function 'sw3_can_interrupt_handler':
+../Core/Src/can.c:231:58: error: 'ca_payload' undeclared (first use in this function); did you mean 'can_payload'?
+  231 |                 sw3_can_shared_params_callback(RxHeader, ca_payload.id, can_payload.value);
+      |                                                          ^~~~~~~~~~
+      |                                                          can_payload
+../Core/Src/can.c:231:58: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/can.c: In function 'sw3_can_init':
+../Core/Src/can.c:322:29: warning: unused variable 'can_tx_header' [-Wunused-variable]
+  322 |         CAN_TxHeaderTypeDef can_tx_header = {
+      |                             ^~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/can.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+20:53:13 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+../Core/Src/can.c: In function 'sw3_can_init':
+../Core/Src/can.c:322:29: warning: unused variable 'can_tx_header' [-Wunused-variable]
+  322 |         CAN_TxHeaderTypeDef can_tx_header = {
+      |                             ^~~~~~~~~~~~~
+arm-none-eabi-gcc -o "Template.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\corre\coding\Software-3\Template\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Template.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Template.elf
+ 
+arm-none-eabi-size  Template.elf 
+arm-none-eabi-objdump -h -S Template.elf  > "Template.list"
+   text	   data	    bss	    dec	    hex	filename
+  13392	     16	   1840	  15248	   3b90	Template.elf
+Finished building: default.size.stdout
+ 
+Finished building: Template.list
+ 
+20:57:44 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/can.c: In function 'sw3_can_init':
+../Core/Src/can.c:322:25: error: expected expression before '{' token
+  322 |         can_tx_header = {
+      |                         ^
+make: *** [Core/Src/subdir.mk:40: Core/Src/can.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+21:01:44 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc -o "Template.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\corre\coding\Software-3\Template\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Template.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Template.elf
+ 
+arm-none-eabi-size  Template.elf 
+arm-none-eabi-objdump -h -S Template.elf  > "Template.list"
+   text	   data	    bss	    dec	    hex	filename
+  13392	     16	   1840	  15248	   3b90	Template.elf
+Finished building: default.size.stdout
+ 
+Finished building: Template.list
+ 

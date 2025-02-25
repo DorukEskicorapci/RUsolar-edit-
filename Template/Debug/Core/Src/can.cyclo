@@ -1,6 +1,11 @@
-../Core/Src/can.c:22:21:find	3
-../Core/Src/can.c:31:6:sw3_can_set_third_party_callback	2
-../Core/Src/can.c:36:6:sw3_can_interrupt_handler	9
-../Core/Src/can.c:72:6:HAL_CAN_RxFifo0MsgPendingCallback	1
-../Core/Src/can.c:76:6:sw3_can_error_handler	2
-../Core/Src/can.c:85:6:sw3_can_init	1
+../Core/Src/can.c:76:21:find_param_by_id	3
+../Core/Src/can.c:96:26:send_can_message	1
+../Core/Src/can.c:107:6:heartbeat_loop	4
+../Core/Src/can.c:130:6:sw3_can_set_third_party_callback	2
+../Core/Src/can.c:140:6:sw3_can_set_gv_commands_callback	2
+../Core/Src/can.c:150:6:sw3_can_set_shared_params_callback	2
+../Core/Src/can.c:162:6:sw3_can_interrupt_handler	23
+../Core/Src/can.c:285:6:HAL_CAN_RxFifo0MsgPendingCallback	1
+../Core/Src/can.c:292:6:sw3_can_error_handler	2
+../Core/Src/can.c:316:6:sw3_can_init	1
+../Core/Src/can.c:371:6:sw3_can_loop	8

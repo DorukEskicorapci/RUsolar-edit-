@@ -34,39 +34,6 @@
 /////////////////////// TYPES ////////////////////////////
 //////////////////////////////////////////////////////////
 
-typedef struct
-{
-	unsigned char message_mode : 4, marked_for_send : 1, reserved : 3;
-} internal_flags_t;
-
-// Define CAN message structure
-// CAN structure is as follows:
-// - (uint16_t) PARAM_ID	: id of the message
-// - (uint32_t) value		: the current message
-// - (uint32_t) last_value	: the previous message
-// - (uint32_t) SAFE_VALUE	: the default value in case we don't receive any messages or something went wrong
-// - (uint32_t) timestamp	: timestamp of the message
-// - (uint8_t)  TTL			: time-to-live of the message
-// - (struct internal_flags_t) flags : some flags of the message // TODO: clearer message
-typedef struct
-{
-	uint16_t PARAM_ID;
-	uint32_t value;
-	uint32_t last_value;
-	uint32_t SAFE_VALUE;
-	uint32_t timestamp;
-	uint8_t TTL;
-	internal_flags_t flags;
-} can_param_t;
-
-typedef enum
-{
-	PASSIVE,
-	DEPENDENCY_NO_CALLBACK,
-	DEPENCENCY_CALLBACK,
-	AUTO_BROADCAST,
-	MANUAL_BROADCAST
-} message_mode_t;
 
 typedef struct
 {
@@ -86,6 +53,7 @@ typedef struct
 	can_params_t gv_params;
 	uint8_t can_id;
 	uint32_t board_type_id;
+	uint8_t ttl;
 } can_config_t;
 
 //////////////////////////////////////////////////////////
@@ -108,6 +76,6 @@ void sw3_can_set_third_party_callback(void (*callback)(CAN_RxHeaderTypeDef, uint
 
 void sw3_can_set_gv_commands_callback(void (*callback)(uint16_t param_id, uint32_t payload));
 
-void sw3_can_set_shared_params_callback(void (*callback)(uint16_t param_id, uint32_t payload));
+void sw3_can_set_shared_params_callback(void (*callback)(CAN_RxHeaderTypeDef header, uint16_t param_id, uint32_t payload));
 
 #endif
