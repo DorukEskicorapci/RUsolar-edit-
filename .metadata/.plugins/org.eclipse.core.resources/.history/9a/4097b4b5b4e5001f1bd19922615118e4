@@ -1,8 +1,0 @@
-#ifndef CAN_PARAMS_H
-#define CAN_PARAMS_H
-
-
-#include "can.h"
-
-
-#endif

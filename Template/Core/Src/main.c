@@ -40,6 +40,10 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
+#define BOARD_CAN_ID 0x103
+#define BOARD_TYPE_ID 0
+#define BOARD_TTL 10
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -57,6 +61,9 @@ TIM_HandleTypeDef htim3;
 
 uint32_t TxMailbox;
 
+can_params_t global_vehicle_parameters;
+can_config_t vehicle_can_config;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -72,12 +79,6 @@ static void MX_TIM3_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
-
-void HAL_GPIO_EXTI_Callback(uint16_t pin) {
-
-}
-
 
 /* USER CODE END 0 */
 
@@ -124,6 +125,13 @@ int main(void)
   // Turn on interupt for hcan to receive messages on the buffer
   HAL_CAN_ActivateNotification(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
 
+  vehicle_can_config.errors.present = 0;
+  vehicle_can_config.gv_params = &global_vehicle_parameters;
+  vehicle_can_config.can_id = BOARD_CAN_ID;
+  vehicle_can_config.board_type_id = BOARD_TYPE_ID;
+  vehicle_can_config.board_ttl = BOARD_TTL;
+  
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -134,7 +142,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
+    sw3_can_loop();
   }
   /* USER CODE END 3 */
 }

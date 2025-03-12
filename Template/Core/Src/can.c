@@ -96,7 +96,9 @@ static can_param_t *find_param_by_id(uint16_t id)
 static HAL_StatusTypeDef send_can_message(uint8_t data[8])
 {
 	// Make sure we don't send a NULL pointer
-	assert_param(data != NULL);
+	if (data == NULL) {
+		return HAL_ERROR;
+	}
 
 	return HAL_CAN_AddTxMessage(can_hcan, &can_tx_header, data, &tx_mailbox);
 }
@@ -319,7 +321,6 @@ void sw3_can_init(CAN_HandleTypeDef *hcan, can_config_t *func_config)
 
 	can_hcan = hcan;
 
-
 	can_tx_header.StdId = func_config->can_id;
 	can_tx_header.IDE = CAN_ID_STD;
 	can_tx_header.RTR = CAN_RTR_DATA;
@@ -330,9 +331,9 @@ void sw3_can_init(CAN_HandleTypeDef *hcan, can_config_t *func_config)
 	config = func_config;
 	config->errors.present = 0;
 
-	sw3_gv_params_init(&config->gv_params);
+	sw3_gv_params_init(config->gv_params);
 
-	gv_params_arr = (can_param_t*)&config->gv_params;
+	gv_params_arr = (can_param_t*)config->gv_params;
 	gv_params_size = sizeof(can_params_t) / sizeof(can_param_t);
 
 	// Start CAN with given config
@@ -408,4 +409,34 @@ void sw3_can_loop()
 			}
 		}
 	}
+}
+
+/**
+ * Set the message mode for CAN param 
+*/
+int sw3_set_param_mode(message_mode_t msg_mode, can_param_t* param) {
+	assert_param(param != NULL);
+	
+	// set message mode
+	param->flags.message_mode = msg_mode;
+
+	// clear marked-for-send flag to false
+	param->flags.marked_for_send = 0;
+}
+
+int sw3_force_send(can_param_t *param) {
+	assert_param(param != NULL);
+
+	// Check if CAN param is in BROADCAST mode
+	if (
+		param->flags.message_mode == AUTO_BROADCAST ||
+		param->flags.message_mode == MANUAL_BROADCAST
+	) {
+		// set mark-for-send to true
+		param->flags.marked_for_send = 1;
+
+		return 1;
+	}
+
+	return 0;
 }

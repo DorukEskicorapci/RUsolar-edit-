@@ -50,7 +50,7 @@ typedef union
 typedef struct
 {
 	can_errors_t errors;
-	can_params_t gv_params;
+	can_params_t* gv_params;
 	uint8_t can_id;
 	uint32_t board_type_id;
 	uint8_t ttl;
@@ -74,6 +74,9 @@ int sw3_force_send(can_param_t *);
 
 void sw3_can_set_third_party_callback(void (*callback)(CAN_RxHeaderTypeDef, uint8_t[8]));
 
+/**
+ * Update global vehicle CAN's params when the device receives a Global Vehicle command
+*/
 void sw3_can_set_gv_commands_callback(void (*callback)(uint16_t param_id, uint32_t payload));
 
 void sw3_can_set_shared_params_callback(void (*callback)(CAN_RxHeaderTypeDef header, uint16_t param_id, uint32_t payload));

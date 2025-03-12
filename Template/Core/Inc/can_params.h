@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 
+// Mes
 typedef enum
 {
 	PASSIVE,
@@ -14,8 +15,8 @@ typedef enum
 
 typedef struct
 {
-	unsigned char message_mode : 4, marked_for_send : 1, reserved : 3;
-} internal_flags_t;
+	unsigned char message_mode : 4, marked_for_send : 1, reserved : 3;// - AUTO_BROADCAST: do not read, send when a change is detected
+}// - MANUAL_BROADCAST: do not read, send when an update is manually triggeredternal_flags_t;
 
 // Define CAN message structure
 // CAN structure is as follows:

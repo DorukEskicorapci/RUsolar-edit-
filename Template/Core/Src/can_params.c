@@ -16,8 +16,6 @@ void sw3_gv_params_init(can_params_t *gv_params)
 			}
 	};
 
-
-
 	*gv_params = params;
 
 }
