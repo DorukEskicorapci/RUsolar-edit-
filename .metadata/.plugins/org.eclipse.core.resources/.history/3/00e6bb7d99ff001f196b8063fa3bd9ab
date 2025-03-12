@@ -3,7 +3,6 @@
 
 #include <stdint.h>
 #include "main.h"
-#include "can_params.h"
 
 // CONSTANTS are defined based on this spec
 // https://docs.google.com/document/d/1sJ9VwzolyfRb-tBFXXP6ycqGwgcbOeu7hwbXEH93hWY/edit?tab=t.0#heading=h.u8pdmic8hgeu
@@ -33,6 +32,9 @@
 //////////////////////////////////////////////////////////
 /////////////////////// TYPES ////////////////////////////
 //////////////////////////////////////////////////////////
+
+typedef stuct can_param_t;
+typedef stuct can_params_t;
 
 typedef struct
 {

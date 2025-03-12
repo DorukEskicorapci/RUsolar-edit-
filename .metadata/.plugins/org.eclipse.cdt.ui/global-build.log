@@ -1748,3 +1748,1322 @@ Finished building: default.size.stdout
  
 Finished building: Template.list
  
+19:22:57 **** Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f7xx_it.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f7xx_it.d" -MT"Core/Src/stm32f7xx_it.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f7xx_it.o"
+In file included from ../Core/Src/can_params.c:1:
+../Core/Inc/can_params.h:30:1: error: duplicate 'typedef'
+   30 | typedef struct
+      | ^~~~~~~
+../Core/Inc/can_params.h:30:9: error: expected ';', identifier or '(' before 'struct'
+   30 | typedef struct
+      |         ^~~~~~
+../Core/Inc/can_params.h:38:9: error: unknown type name 'internal_flags_t'
+   38 |         internal_flags_t flags;
+      |         ^~~~~~~~~~~~~~~~
+../Core/Inc/can_params.h:43:9: error: expected specifier-qualifier-list before 'can_param_t'
+   43 |         can_param_t speed;
+      |         ^~~~~~~~~~~
+../Core/Src/can_params.c: In function 'sw3_gv_params_init':
+../Core/Src/can_params.c:8:26: error: 'can_params_t' has no member named 'speed'
+    8 |                         .speed = {
+      |                          ^~~~~
+../Core/Src/can_params.c:8:34: error: extra brace group at end of initializer
+    8 |                         .speed = {
+      |                                  ^
+../Core/Src/can_params.c:8:34: note: (near initialization for 'params')
+../Core/Src/can_params.c:15:50: error: extra brace group at end of initializer
+   15 |                                         .flags = {.message_mode = PASSIVE, .marked_for_send = 0, .reserved = 0}
+      |                                                  ^
+../Core/Src/can_params.c:15:50: note: (near initialization for 'params')
+../Core/Src/can_params.c:8:34: warning: excess elements in struct initializer
+    8 |                         .speed = {
+      |                                  ^
+../Core/Src/can_params.c:8:34: note: (near initialization for 'params')
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+make: *** Waiting for unfinished jobs....
+In file included from ../Core/Inc/can.h:6,
+                 from ../Core/Src/can.c:11:
+../Core/Inc/can_params.h:30:1: error: duplicate 'typedef'
+   30 | typedef struct
+      | ^~~~~~~
+../Core/Inc/can_params.h:30:9: error: expected ';', identifier or '(' before 'struct'
+   30 | typedef struct
+      |         ^~~~~~
+../Core/Inc/can_params.h:38:9: error: unknown type name 'internal_flags_t'
+   38 |         internal_flags_t flags;
+      |         ^~~~~~~~~~~~~~~~
+../Core/Inc/can_params.h:43:9: error: expected specifier-qualifier-list before 'can_param_t'
+   43 |         can_param_t speed;
+      |         ^~~~~~~~~~~
+../Core/Inc/can.h:71:40: error: expected declaration specifiers or '...' before 'can_param_t'
+   71 | int sw3_set_param_mode(message_mode_t, can_param_t *);
+      |                                        ^~~~~~~~~~~
+../Core/Inc/can.h:73:20: error: expected declaration specifiers or '...' before 'can_param_t'
+   73 | int sw3_force_send(can_param_t *);
+      |                    ^~~~~~~~~~~
+../Core/Src/can.c:52:20: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token
+   52 | static can_param_t *gv_params_arr = NULL;
+      |                    ^
+../Core/Src/can.c:76:20: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token
+   76 | static can_param_t *find_param_by_id(uint16_t id)
+      |                    ^
+../Core/Src/can.c: In function 'sw3_can_interrupt_handler':
+../Core/Src/can.c:189:22: error: 'param' undeclared (first use in this function)
+  189 |         can_param_t *param = find_param_by_id(can_payload.id);
+      |                      ^~~~~
+../Core/Src/can.c:189:22: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/stm32f7xx_it.c: In function 'TIM3_IRQHandler':
+../Core/Src/stm32f7xx_it.c:240:1: error: 'q' undeclared (first use in this function)
+  240 | q
+      | ^
+../Core/Src/stm32f7xx_it.c:240:1: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/stm32f7xx_it.c:240:2: error: expected ';' before '}' token
+  240 | q
+      |  ^
+      |  ;
+  241 |   /* USER CODE END TIM3_IRQn 1 */
+  242 | }
+      | ~ 
+../Core/Src/main.c:64:1: error: unknown type name 'can_params_t'
+   64 | can_params_t global_vehicle_parameters;
+      | ^~~~~~~~~~~~
+../Core/Src/can.c:189:30: warning: implicit declaration of function 'find_param_by_id' [-Wimplicit-function-declaration]
+  189 |         can_param_t *param = find_param_by_id(can_payload.id);
+      |                              ^~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/stm32f7xx_it.o] Error 1
+../Core/Src/main.c:65:1: error: unknown type name 'can_config_t'
+   65 | can_config_t vehicle_can_config;
+      | ^~~~~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:128:21: error: request for member 'errors' in something not a structure or union
+  128 |   vehicle_can_config.errors.present = 0;
+      |                     ^
+../Core/Src/main.c:129:21: error: request for member 'gv_params' in something not a structure or union
+  129 |   vehicle_can_config.gv_params = &global_vehicle_parameters;
+      |                     ^
+../Core/Src/main.c:130:21: error: request for member 'can_id' in something not a structure or union
+  130 |   vehicle_can_config.can_id = BOARD_CAN_ID;
+      |                     ^
+../Core/Src/main.c:131:21: error: request for member 'board_type_id' in something not a structure or union
+  131 |   vehicle_can_config.board_type_id = BOARD_TYPE_ID;
+      |                     ^
+../Core/Src/main.c:132:21: error: request for member 'board_ttl' in something not a structure or union
+  132 |   vehicle_can_config.board_ttl = BOARD_TTL;
+      |                     ^
+../Core/Src/can.c: In function 'sw3_can_init':
+../Core/Src/can.c:336:9: error: 'gv_params_arr' undeclared (first use in this function); did you mean 'gv_params_size'?
+  336 |         gv_params_arr = (can_param_t*)config->gv_params;
+      |         ^~~~~~~~~~~~~
+      |         gv_params_size
+../Core/Src/can.c:336:38: error: expected expression before ')' token
+  336 |         gv_params_arr = (can_param_t*)config->gv_params;
+      |                                      ^
+../Core/Src/can.c: In function 'sw3_can_loop':
+../Core/Src/can.c:394:21: error: 'gv_params_arr' undeclared (first use in this function); did you mean 'gv_params_size'?
+  394 |                 if (gv_params_arr[i].flags.marked_for_send)
+      |                     ^~~~~~~~~~~~~
+      |                     gv_params_size
+../Core/Src/can.c: At top level:
+../Core/Src/can.c:417:49: error: expected declaration specifiers or '...' before 'can_param_t'
+  417 | int sw3_set_param_mode(message_mode_t msg_mode, can_param_t* param) {
+      |                                                 ^~~~~~~~~~~
+../Core/Src/can.c:427:20: error: expected declaration specifiers or '...' before 'can_param_t'
+  427 | int sw3_force_send(can_param_t *param) {
+      |                    ^~~~~~~~~~~
+../Core/Src/main.c:145:5: warning: implicit declaration of function 'sw3_can_loop' [-Wimplicit-function-declaration]
+  145 |     sw3_can_loop();
+      |     ^~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+make: *** [Core/Src/subdir.mk:40: Core/Src/can.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+19:25:10 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f7xx_it.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f7xx_it.d" -MT"Core/Src/stm32f7xx_it.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f7xx_it.o"
+In file included from ../Core/Inc/can_params.h:5,
+                 from ../Core/Src/can_params.c:1:
+../Core/Inc/can.h:53:9: error: unknown type name 'can_params_t'
+   53 |         can_params_t* gv_params;
+      |         ^~~~~~~~~~~~
+In file included from ../Core/Inc/can.h:6,
+                 from ../Core/Src/can.c:11:
+../Core/Inc/can_params.h:31:1: error: duplicate 'typedef'
+   31 | typedef struct
+      | ^~~~~~~
+../Core/Inc/can_params.h:31:9: error: expected ';', identifier or '(' before 'struct'
+   31 | typedef struct
+      |         ^~~~~~
+../Core/Inc/can_params.h:39:9: error: unknown type name 'internal_flags_t'
+   39 |         internal_flags_t flags;
+      |         ^~~~~~~~~~~~~~~~
+../Core/Inc/can_params.h:44:9: error: expected specifier-qualifier-list before 'can_param_t'
+   44 |         can_param_t speed;
+      |         ^~~~~~~~~~~
+../Core/Inc/can.h:71:42: error: expected declaration specifiers or '...' before 'can_param_t'
+   71 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                                          ^~~~~~~~~~~
+../Core/Inc/can.h:73:20: error: expected declaration specifiers or '...' before 'can_param_t'
+   73 | int sw3_force_send(can_param_t *);
+      |                    ^~~~~~~~~~~
+../Core/Src/can.c:52:20: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token
+   52 | static can_param_t *gv_params_arr = NULL;
+      |                    ^
+../Core/Src/can.c:76:20: error: expected '=', ',', ';', 'asm' or '__attribute__' before '*' token
+   76 | static can_param_t *find_param_by_id(uint16_t id)
+      |                    ^
+../Core/Src/can.c: In function 'sw3_can_interrupt_handler':
+../Core/Src/can.c:189:22: error: 'param' undeclared (first use in this function)
+  189 |         can_param_t *param = find_param_by_id(can_payload.id);
+      |                      ^~~~~
+../Core/Src/can.c:189:22: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Inc/can.h:71:24: error: unknown type name 'message_mode_t'
+   71 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                        ^~~~~~~~~~~~~~
+../Core/Inc/can.h:71:42: error: unknown type name 'can_param_t'
+   71 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                                          ^~~~~~~~~~~
+../Core/Src/stm32f7xx_it.c: In function 'TIM3_IRQHandler':
+../Core/Src/stm32f7xx_it.c:240:1: error: 'q' undeclared (first use in this function)
+  240 | q
+      | ^
+../Core/Src/stm32f7xx_it.c:240:1: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/stm32f7xx_it.c:240:2: error: expected ';' before '}' token
+  240 | q
+      |  ^
+      |  ;
+  241 |   /* USER CODE END TIM3_IRQn 1 */
+  242 | }
+      | ~ 
+../Core/Inc/can.h:73:20: error: unknown type name 'can_param_t'
+   73 | int sw3_force_send(can_param_t *);
+      |                    ^~~~~~~~~~~
+../Core/Inc/can_params.h:31:1: error: duplicate 'typedef'
+   31 | typedef struct
+      | ^~~~~~~
+../Core/Inc/can_params.h:31:9: error: expected ';', identifier or '(' before 'struct'
+   31 | typedef struct
+      |         ^~~~~~
+../Core/Inc/can_params.h:39:9: error: unknown type name 'internal_flags_t'
+   39 |         internal_flags_t flags;
+      |         ^~~~~~~~~~~~~~~~
+../Core/Inc/can_params.h:44:9: error: expected specifier-qualifier-list before 'can_param_t'
+   44 |         can_param_t speed;
+      |         ^~~~~~~~~~~
+../Core/Src/can_params.c: In function 'sw3_gv_params_init':
+../Core/Src/can_params.c:8:26: error: 'can_params_t' has no member named 'speed'
+    8 |                         .speed = {
+      |                          ^~~~~
+../Core/Src/can_params.c:8:34: error: extra brace group at end of initializer
+    8 |                         .speed = {
+      |                                  ^
+../Core/Src/can_params.c:8:34: note: (near initialization for 'params')
+../Core/Src/can_params.c:15:50: error: extra brace group at end of initializer
+   15 |                                         .flags = {.message_mode = PASSIVE, .marked_for_send = 0, .reserved = 0}
+      |                                                  ^
+../Core/Src/can_params.c:15:50: note: (near initialization for 'params')
+../Core/Src/can_params.c:8:34: warning: excess elements in struct initializer
+    8 |                         .speed = {
+      |                                  ^
+../Core/Src/main.c:64:1: error: unknown type name 'can_params_t'
+   64 | can_params_t global_vehicle_parameters;
+      | ^~~~~~~~~~~~
+../Core/Src/can.c:189:30: warning: implicit declaration of function 'find_param_by_id' [-Wimplicit-function-declaration]
+  189 |         can_param_t *param = find_param_by_id(can_payload.id);
+      |                              ^~~~~~~~~~~~~~~~
+../Core/Src/can_params.c:8:34: note: (near initialization for 'params')
+make: *** [Core/Src/subdir.mk:40: Core/Src/stm32f7xx_it.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/can.c: In function 'sw3_can_init':
+../Core/Src/can.c:336:9: error: 'gv_params_arr' undeclared (first use in this function); did you mean 'gv_params_size'?
+  336 |         gv_params_arr = (can_param_t*)config->gv_params;
+      |         ^~~~~~~~~~~~~
+      |         gv_params_size
+../Core/Src/can.c:336:38: error: expected expression before ')' token
+  336 |         gv_params_arr = (can_param_t*)config->gv_params;
+      |                                      ^
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+../Core/Src/main.c:65:1: error: unknown type name 'can_config_t'
+   65 | can_config_t vehicle_can_config;
+      | ^~~~~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:128:21: error: request for member 'errors' in something not a structure or union
+  128 |   vehicle_can_config.errors.present = 0;
+      |                     ^
+../Core/Src/main.c:129:21: error: request for member 'gv_params' in something not a structure or union
+  129 |   vehicle_can_config.gv_params = &global_vehicle_parameters;
+      |                     ^
+../Core/Src/main.c:130:21: error: request for member 'can_id' in something not a structure or union
+  130 |   vehicle_can_config.can_id = BOARD_CAN_ID;
+      |                     ^
+../Core/Src/main.c:131:21: error: request for member 'board_type_id' in something not a structure or union
+  131 |   vehicle_can_config.board_type_id = BOARD_TYPE_ID;
+      |                     ^
+../Core/Src/main.c:132:21: error: request for member 'board_ttl' in something not a structure or union
+  132 |   vehicle_can_config.board_ttl = BOARD_TTL;
+      |                     ^
+../Core/Src/can.c: In function 'sw3_can_loop':
+../Core/Src/can.c:394:21: error: 'gv_params_arr' undeclared (first use in this function); did you mean 'gv_params_size'?
+  394 |                 if (gv_params_arr[i].flags.marked_for_send)
+      |                     ^~~~~~~~~~~~~
+      |                     gv_params_size
+../Core/Src/can.c: At top level:
+../Core/Src/can.c:417:49: error: expected declaration specifiers or '...' before 'can_param_t'
+  417 | int sw3_set_param_mode(message_mode_t msg_mode, can_param_t* param) {
+      |                                                 ^~~~~~~~~~~
+../Core/Src/can.c:427:20: error: expected declaration specifiers or '...' before 'can_param_t'
+  427 | int sw3_force_send(can_param_t *param) {
+      |                    ^~~~~~~~~~~
+../Core/Src/main.c:145:5: warning: implicit declaration of function 'sw3_can_loop' [-Wimplicit-function-declaration]
+  145 |     sw3_can_loop();
+      |     ^~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/can.o] Error 1
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+19:25:54 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f7xx_it.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f7xx_it.d" -MT"Core/Src/stm32f7xx_it.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f7xx_it.o"
+../Core/Src/can.c: In function 'sw3_set_param_mode':
+../Core/Src/can.c:425:1: warning: control reaches end of non-void function [-Wreturn-type]
+  425 | }
+      | ^
+In file included from ../Core/Inc/can_params.h:5,
+                 from ../Core/Src/can_params.c:1:
+../Core/Inc/can.h:53:9: error: unknown type name 'can_params_t'
+   53 |         can_params_t* gv_params;
+      |         ^~~~~~~~~~~~
+../Core/Src/stm32f7xx_it.c: In function 'TIM3_IRQHandler':
+../Core/Inc/can.h:71:24: error: unknown type name 'message_mode_t'
+   71 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                        ^~~~~~~~~~~~~~
+../Core/Src/stm32f7xx_it.c:240:1: error: 'q' undeclared (first use in this function)
+  240 | q
+      | ^
+../Core/Src/stm32f7xx_it.c:240:1: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/stm32f7xx_it.c:240:2: error: expected ';' before '}' token
+  240 | q
+      |  ^
+      |  ;
+  241 |   /* USER CODE END TIM3_IRQn 1 */
+  242 | }
+      | ~ 
+../Core/Src/main.c:64:1: error: unknown type name 'can_params_t'
+   64 | can_params_t global_vehicle_parameters;
+      | ^~~~~~~~~~~~
+../Core/Inc/can.h:71:42: error: unknown type name 'can_param_t'
+   71 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                                          ^~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/stm32f7xx_it.o] Error 1
+../Core/Src/main.c:65:1: error: unknown type name 'can_config_t'
+   65 | can_config_t vehicle_can_config;
+      | ^~~~~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:128:21: error: request for member 'errors' in something not a structure or union
+  128 |   vehicle_can_config.errors.present = 0;
+      |                     ^
+../Core/Src/main.c:129:21: error: request for member 'gv_params' in something not a structure or union
+  129 |   vehicle_can_config.gv_params = &global_vehicle_parameters;
+      |                     ^
+../Core/Src/main.c:130:21: error: request for member 'can_id' in something not a structure or union
+  130 |   vehicle_can_config.can_id = BOARD_CAN_ID;
+      |                     ^
+../Core/Src/main.c:131:21: error: request for member 'board_type_id' in something not a structure or union
+  131 |   vehicle_can_config.board_type_id = BOARD_TYPE_ID;
+      |                     ^
+../Core/Src/main.c:132:21: error: request for member 'board_ttl' in something not a structure or union
+  132 |   vehicle_can_config.board_ttl = BOARD_TTL;
+      |                     ^
+../Core/Inc/can.h:73:20: error: unknown type name 'can_param_t'
+   73 | int sw3_force_send(can_param_t *);
+      |                    ^~~~~~~~~~~
+make: *** Waiting for unfinished jobs....
+../Core/Src/main.c:145:5: warning: implicit declaration of function 'sw3_can_loop' [-Wimplicit-function-declaration]
+  145 |     sw3_can_loop();
+      |     ^~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+19:26:10 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f7xx_it.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f7xx_it.d" -MT"Core/Src/stm32f7xx_it.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f7xx_it.o"
+In file included from ../Core/Inc/can_params.h:5,
+                 from ../Core/Src/can_params.c:1:
+../Core/Inc/can.h:53:9: error: unknown type name 'can_params_t'
+   53 |         can_params_t* gv_params;
+      |         ^~~~~~~~~~~~
+../Core/Src/stm32f7xx_it.c: In function 'TIM3_IRQHandler':
+../Core/Src/stm32f7xx_it.c:240:1: error: 'q' undeclared (first use in this function)
+  240 | q
+      | ^
+../Core/Src/stm32f7xx_it.c:240:1: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/stm32f7xx_it.c:240:2: error: expected ';' before '}' token
+  240 | q
+      |  ^
+      |  ;
+  241 |   /* USER CODE END TIM3_IRQn 1 */
+  242 | }
+      | ~ 
+../Core/Inc/can.h:71:24: error: unknown type name 'message_mode_t'
+   71 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                        ^~~~~~~~~~~~~~
+../Core/Src/main.c:64:1: error: unknown type name 'can_params_t'
+   64 | can_params_t global_vehicle_parameters;
+      | ^~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/stm32f7xx_it.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Inc/can.h:71:42: error: unknown type name 'can_param_t'
+   71 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                                          ^~~~~~~~~~~
+../Core/Src/main.c:65:1: error: unknown type name 'can_config_t'
+   65 | can_config_t vehicle_can_config;
+      | ^~~~~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:128:21: error: request for member 'errors' in something not a structure or union
+  128 |   vehicle_can_config.errors.present = 0;
+      |                     ^
+../Core/Src/main.c:129:21: error: request for member 'gv_params' in something not a structure or union
+  129 |   vehicle_can_config.gv_params = &global_vehicle_parameters;
+      |                     ^
+../Core/Src/main.c:130:21: error: request for member 'can_id' in something not a structure or union
+  130 |   vehicle_can_config.can_id = BOARD_CAN_ID;
+      |                     ^
+../Core/Src/main.c:131:21: error: request for member 'board_type_id' in something not a structure or union
+  131 |   vehicle_can_config.board_type_id = BOARD_TYPE_ID;
+      |                     ^
+../Core/Src/main.c:132:21: error: request for member 'board_ttl' in something not a structure or union
+  132 |   vehicle_can_config.board_ttl = BOARD_TTL;
+      |                     ^
+../Core/Inc/can.h:73:20: error: unknown type name 'can_param_t'
+   73 | int sw3_force_send(can_param_t *);
+      |                    ^~~~~~~~~~~
+../Core/Src/main.c:145:5: warning: implicit declaration of function 'sw3_can_loop' [-Wimplicit-function-declaration]
+  145 |     sw3_can_loop();
+      |     ^~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+19:26:32 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f7xx_it.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f7xx_it.d" -MT"Core/Src/stm32f7xx_it.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f7xx_it.o"
+In file included from ../Core/Src/can.c:11:
+../Core/Inc/can.h:52:9: error: unknown type name 'can_params_t'
+   52 |         can_params_t* gv_params;
+      |         ^~~~~~~~~~~~
+../Core/Inc/can.h:70:24: error: unknown type name 'message_mode_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                        ^~~~~~~~~~~~~~
+In file included from ../Core/Inc/can_params.h:5,
+                 from ../Core/Src/can_params.c:1:
+../Core/Inc/can.h:52:9: error: unknown type name 'can_params_t'
+   52 |         can_params_t* gv_params;
+      |         ^~~~~~~~~~~~
+../Core/Inc/can.h:70:42: error: unknown type name 'can_param_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                                          ^~~~~~~~~~~
+../Core/Src/stm32f7xx_it.c: In function 'TIM3_IRQHandler':
+../Core/Src/stm32f7xx_it.c:240:1: error: 'q' undeclared (first use in this function)
+  240 | q
+      | ^
+../Core/Src/stm32f7xx_it.c:240:1: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/stm32f7xx_it.c:240:2: error: expected ';' before '}' token
+  240 | q
+      |  ^
+      |  ;
+  241 |   /* USER CODE END TIM3_IRQn 1 */
+  242 | }
+      | ~ 
+../Core/Inc/can.h:72:20: error: unknown type name 'can_param_t'
+   72 | int sw3_force_send(can_param_t *);
+      |                    ^~~~~~~~~~~
+../Core/Src/main.c:64:1: error: unknown type name 'can_params_t'
+   64 | can_params_t global_vehicle_parameters;
+      | ^~~~~~~~~~~~
+../Core/Src/can.c: In function 'sw3_can_init':
+../Core/Src/can.c:334:34: warning: passing argument 1 of 'sw3_gv_params_init' from incompatible pointer type [-Wincompatible-pointer-types]
+  334 |         sw3_gv_params_init(config->gv_params);
+      |                            ~~~~~~^~~~~~~~~~~
+      |                                  |
+      |                                  int *
+In file included from ../Core/Src/can.c:13:
+../Core/Inc/can_params.h:47:39: note: expected 'can_params_t *' but argument is of type 'int *'
+   47 | void sw3_gv_params_init(can_params_t *param);
+      |                         ~~~~~~~~~~~~~~^~~~~
+../Core/Src/can.c: In function 'sw3_set_param_mode':
+../Core/Src/can.c:425:1: warning: control reaches end of non-void function [-Wreturn-type]
+  425 | }
+      | ^
+../Core/Inc/can.h:70:24: error: unknown type name 'message_mode_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                        ^~~~~~~~~~~~~~
+../Core/Src/main.c:65:1: error: unknown type name 'can_config_t'
+   65 | can_config_t vehicle_can_config;
+      | ^~~~~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:128:21: error: request for member 'errors' in something not a structure or union
+  128 |   vehicle_can_config.errors.present = 0;
+      |                     ^
+../Core/Src/main.c:129:21: error: request for member 'gv_params' in something not a structure or union
+  129 |   vehicle_can_config.gv_params = &global_vehicle_parameters;
+      |                     ^
+../Core/Src/main.c:130:21: error: request for member 'can_id' in something not a structure or union
+  130 |   vehicle_can_config.can_id = BOARD_CAN_ID;
+      |                     ^
+../Core/Src/main.c:131:21: error: request for member 'board_type_id' in something not a structure or union
+  131 |   vehicle_can_config.board_type_id = BOARD_TYPE_ID;
+      |                     ^
+../Core/Src/main.c:132:21: error: request for member 'board_ttl' in something not a structure or union
+  132 |   vehicle_can_config.board_ttl = BOARD_TTL;
+      |                     ^
+make: *** [Core/Src/subdir.mk:40: Core/Src/stm32f7xx_it.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Inc/can.h:70:42: error: unknown type name 'can_param_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                                          ^~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/can.o] Error 1
+../Core/Inc/can.h:72:20: error: unknown type name 'can_param_t'
+   72 | int sw3_force_send(can_param_t *);
+      |                    ^~~~~~~~~~~
+../Core/Src/main.c:145:5: warning: implicit declaration of function 'sw3_can_loop' [-Wimplicit-function-declaration]
+  145 |     sw3_can_loop();
+      |     ^~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+19:26:54 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f7xx_it.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f7xx_it.d" -MT"Core/Src/stm32f7xx_it.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f7xx_it.o"
+In file included from ../Core/Src/can.c:11:
+../Core/Inc/can.h:36:9: error: unknown type name 'stuct'
+   36 | typedef stuct can_param_t;
+      |         ^~~~~
+../Core/Inc/can.h:37:9: error: unknown type name 'stuct'
+   37 | typedef stuct can_params_t;
+      |         ^~~~~
+../Core/Inc/can.h:72:24: error: unknown type name 'message_mode_t'
+   72 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                        ^~~~~~~~~~~~~~
+In file included from ../Core/Src/can.c:13:
+../Core/Inc/can_params.h:40:3: error: conflicting types for 'can_param_t'; have 'struct <anonymous>'
+   40 | } can_param_t;
+      |   ^~~~~~~~~~~
+../Core/Inc/can.h:36:15: note: previous declaration of 'can_param_t' with type 'can_param_t' {aka 'int'}
+   36 | typedef stuct can_param_t;
+      |               ^~~~~~~~~~~
+../Core/Inc/can_params.h:44:21: warning: type defaults to 'int' in declaration of 'speed' [-Wimplicit-int]
+   44 |         can_param_t speed;
+      |                     ^~~~~
+../Core/Inc/can_params.h:45:3: error: conflicting types for 'can_params_t'; have 'struct <anonymous>'
+   45 | } can_params_t;
+      |   ^~~~~~~~~~~~
+../Core/Inc/can.h:37:15: note: previous declaration of 'can_params_t' with type 'can_params_t' {aka 'int'}
+   37 | typedef stuct can_params_t;
+      |               ^~~~~~~~~~~~
+../Core/Inc/can_params.h:47:39: warning: type defaults to 'int' in declaration of 'param' [-Wimplicit-int]
+   47 | void sw3_gv_params_init(can_params_t *param);
+      |                                       ^~~~~
+../Core/Src/can.c:52:21: warning: type defaults to 'int' in declaration of 'gv_params_arr' [-Wimplicit-int]
+   52 | static can_param_t *gv_params_arr = NULL;
+      |                     ^~~~~~~~~~~~~
+../Core/Src/can.c:53:1: warning: type defaults to 'int' in type name [-Wimplicit-int]
+   53 | static size_t gv_params_size = sizeof(can_params_t) / sizeof(can_param_t);
+      | ^~~~~~
+../Core/Src/can.c:53:1: warning: type defaults to 'int' in type name [-Wimplicit-int]
+../Core/Src/can.c:76:21: warning: return type defaults to 'int' [-Wimplicit-int]
+   76 | static can_param_t *find_param_by_id(uint16_t id)
+      |                     ^~~~~~~~~~~~~~~~
+../Core/Src/can.c: In function 'find_param_by_id':
+../Core/Src/can.c:82:43: error: request for member 'PARAM_ID' in something not a structure or union
+   82 |                 if (id == gv_params_arr[i].PARAM_ID)
+      |                                           ^
+../Core/Src/can.c: In function 'sw3_can_interrupt_handler':
+../Core/Src/can.c:189:22: warning: type defaults to 'int' in declaration of 'param' [-Wimplicit-int]
+  189 |         can_param_t *param = find_param_by_id(can_payload.id);
+      |                      ^~~~~
+../Core/Src/can.c:196:18: error: request for member 'flags' in something not a structure or union
+  196 |         if (param->flags.message_mode == AUTO_BROADCAST ||
+      |                  ^~
+../Core/Src/can.c:197:22: error: request for member 'flags' in something not a structure or union
+  197 |                 param->flags.message_mode == MANUAL_BROADCAST)
+      |                      ^~
+../Core/Src/can.c:267:22: error: request for member 'last_value' in something not a structure or union
+  267 |                 param->last_value = param->value;
+      |                      ^~
+../Core/Src/can.c:267:42: error: request for member 'value' in something not a structure or union
+  267 |                 param->last_value = param->value;
+      |                                          ^~
+../Core/Src/can.c:269:22: error: request for member 'value' in something not a structure or union
+  269 |                 param->value = can_payload.value;
+      |                      ^~
+../Core/Src/can.c:271:22: error: request for member 'timestamp' in something not a structure or union
+  271 |                 param->timestamp = HAL_GetTick();
+      |                      ^~
+../Core/Src/can.c: In function 'sw3_can_init':
+../Core/Src/can.c:336:9: warning: type defaults to 'int' in type name [-Wimplicit-int]
+  336 |         gv_params_arr = (can_param_t*)config->gv_params;
+      |         ^~~~~~~~~~~~~
+../Core/Src/can.c:337:9: warning: type defaults to 'int' in type name [-Wimplicit-int]
+  337 |         gv_params_size = sizeof(can_params_t) / sizeof(can_param_t);
+      |         ^~~~~~~~~~~~~~
+../Core/Src/can.c:337:9: warning: type defaults to 'int' in type name [-Wimplicit-int]
+../Core/Src/can.c: In function 'sw3_can_loop':
+../Core/Src/can.c:394:37: error: request for member 'flags' in something not a structure or union
+  394 |                 if (gv_params_arr[i].flags.marked_for_send)
+      |                                     ^
+../Core/Src/can.c:396:45: error: request for member 'flags' in something not a structure or union
+  396 |                         if (gv_params_arr[i].flags.message_mode != AUTO_BROADCAST ||
+      |                                             ^
+../Core/Src/can.c:397:49: error: request for member 'flags' in something not a structure or union
+  397 |                                 gv_params_arr[i].flags.message_mode != MANUAL_BROADCAST)
+      |                                                 ^
+../Core/Src/can.c:403:54: error: request for member 'PARAM_ID' in something not a structure or union
+  403 |                         payload.id = gv_params_arr[i].PARAM_ID;
+      |                                                      ^
+../Core/Src/can.c:404:54: error: request for member 'value' in something not a structure or union
+  404 |                         payload.id = gv_params_arr[i].value;
+      |                                                      ^
+../Core/Src/can.c:408:49: error: request for member 'flags' in something not a structure or union
+  408 |                                 gv_params_arr[i].flags.marked_for_send = 0;
+      |                                                 ^
+../Core/Src/can.c: At top level:
+../Core/Src/can.c:417:62: warning: type defaults to 'int' in declaration of 'param' [-Wimplicit-int]
+  417 | int sw3_set_param_mode(message_mode_t msg_mode, can_param_t* param) {
+      |                                                              ^~~~~
+../Core/Src/can.c: In function 'sw3_set_param_mode':
+../Core/Src/can.c:421:14: error: request for member 'flags' in something not a structure or union
+  421 |         param->flags.message_mode = msg_mode;
+      |              ^~
+../Core/Src/can.c:424:14: error: request for member 'flags' in something not a structure or union
+  424 |         param->flags.marked_for_send = 0;
+      |              ^~
+../Core/Src/can.c: At top level:
+../Core/Src/can.c:427:33: warning: type defaults to 'int' in declaration of 'param' [-Wimplicit-int]
+  427 | int sw3_force_send(can_param_t *param) {
+      |                                 ^~~~~
+../Core/Src/can.c: In function 'sw3_force_send':
+../Core/Src/can.c:432:22: error: request for member 'flags' in something not a structure or union
+  432 |                 param->flags.message_mode == AUTO_BROADCAST ||
+      |                      ^~
+../Core/Src/can.c:433:22: error: request for member 'flags' in something not a structure or union
+  433 |                 param->flags.message_mode == MANUAL_BROADCAST
+      |                      ^~
+../Core/Src/can.c:436:22: error: request for member 'flags' in something not a structure or union
+  436 |                 param->flags.marked_for_send = 1;
+      |                      ^~
+../Core/Src/can.c: In function 'sw3_set_param_mode':
+../Core/Src/can.c:425:1: warning: control reaches end of non-void function [-Wreturn-type]
+  425 | }
+      | ^
+In file included from ../Core/Inc/can_params.h:5,
+                 from ../Core/Src/can_params.c:1:
+../Core/Inc/can.h:36:9: error: unknown type name 'stuct'
+   36 | typedef stuct can_param_t;
+      |         ^~~~~
+../Core/Inc/can.h:37:9: error: unknown type name 'stuct'
+   37 | typedef stuct can_params_t;
+      |         ^~~~~
+../Core/Src/stm32f7xx_it.c: In function 'TIM3_IRQHandler':
+../Core/Src/stm32f7xx_it.c:240:1: error: 'q' undeclared (first use in this function)
+  240 | q
+      | ^
+../Core/Src/stm32f7xx_it.c:240:1: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/stm32f7xx_it.c:240:2: error: expected ';' before '}' token
+  240 | q
+      |  ^
+      |  ;
+  241 |   /* USER CODE END TIM3_IRQn 1 */
+  242 | }
+      | ~ 
+../Core/Src/main.c:64:1: error: unknown type name 'can_params_t'
+   64 | can_params_t global_vehicle_parameters;
+      | ^~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/stm32f7xx_it.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Inc/can.h:72:24: error: unknown type name 'message_mode_t'
+   72 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                        ^~~~~~~~~~~~~~
+../Core/Inc/can_params.h:40:3: error: conflicting types for 'can_param_t'; have 'struct <anonymous>'
+   40 | } can_param_t;
+      |   ^~~~~~~~~~~
+../Core/Inc/can.h:36:15: note: previous declaration of 'can_param_t' with type 'can_param_t' {aka 'int'}
+   36 | typedef stuct can_param_t;
+      |               ^~~~~~~~~~~
+../Core/Inc/can_params.h:44:21: warning: type defaults to 'int' in declaration of 'speed' [-Wimplicit-int]
+   44 |         can_param_t speed;
+      |                     ^~~~~
+../Core/Inc/can_params.h:45:3: error: conflicting types for 'can_params_t'; have 'struct <anonymous>'
+   45 | } can_params_t;
+      |   ^~~~~~~~~~~~
+../Core/Inc/can.h:37:15: note: previous declaration of 'can_params_t' with type 'can_params_t' {aka 'int'}
+   37 | typedef stuct can_params_t;
+      |               ^~~~~~~~~~~~
+../Core/Inc/can_params.h:47:39: warning: type defaults to 'int' in declaration of 'param' [-Wimplicit-int]
+   47 | void sw3_gv_params_init(can_params_t *param);
+      |                                       ^~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/can.o] Error 1
+../Core/Src/can_params.c:5:39: warning: type defaults to 'int' in declaration of 'gv_params' [-Wimplicit-int]
+    5 | void sw3_gv_params_init(can_params_t *gv_params)
+      |                                       ^~~~~~~~~
+../Core/Src/can_params.c: In function 'sw3_gv_params_init':
+../Core/Src/can_params.c:7:29: warning: type defaults to 'int' in declaration of 'params' [-Wimplicit-int]
+    7 |         static can_params_t params = {
+      |                             ^~~~~~
+../Core/Src/can_params.c:8:25: error: field name not in record or union initializer
+    8 |                         .speed = {
+      |                         ^
+../Core/Src/can_params.c:8:25: note: (near initialization for 'params')
+../Core/Src/can_params.c:8:25: warning: braces around scalar initializer
+../Core/Src/can_params.c:8:25: note: (near initialization for 'params')
+../Core/Src/can_params.c:9:41: error: field name not in record or union initializer
+    9 |                                         .PARAM_ID = 1025,
+      |                                         ^
+../Core/Src/can_params.c:9:41: note: (near initialization for 'params')
+../Core/Src/can_params.c:10:41: error: field name not in record or union initializer
+   10 |                                         .value = 0,
+      |                                         ^
+../Core/Src/can_params.c:10:41: note: (near initialization for 'params')
+../Core/Src/main.c:65:1: error: unknown type name 'can_config_t'
+   65 | can_config_t vehicle_can_config;
+      | ^~~~~~~~~~~~
+../Core/Src/can_params.c:10:50: warning: excess elements in scalar initializer
+   10 |                                         .value = 0,
+      |                                                  ^
+../Core/Src/can_params.c:10:50: note: (near initialization for 'params')
+../Core/Src/can_params.c:11:41: error: field name not in record or union initializer
+   11 |                                         .last_value = 0,
+      |                                         ^
+../Core/Src/can_params.c:11:41: note: (near initialization for 'params')
+../Core/Src/can_params.c:11:55: warning: excess elements in scalar initializer
+   11 |                                         .last_value = 0,
+      |                                                       ^
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:128:21: error: request for member 'errors' in something not a structure or union
+  128 |   vehicle_can_config.errors.present = 0;
+      |                     ^
+../Core/Src/can_params.c:11:55: note: (near initialization for 'params')
+../Core/Src/main.c:129:21: error: request for member 'gv_params' in something not a structure or union
+  129 |   vehicle_can_config.gv_params = &global_vehicle_parameters;
+      |                     ^
+../Core/Src/can_params.c:12:41: error: field name not in record or union initializer
+   12 |                                         .SAFE_VALUE = 0,
+      |                                         ^
+../Core/Src/main.c:130:21: error: request for member 'can_id' in something not a structure or union
+  130 |   vehicle_can_config.can_id = BOARD_CAN_ID;
+      |                     ^
+../Core/Src/main.c:131:21: error: request for member 'board_type_id' in something not a structure or union
+  131 |   vehicle_can_config.board_type_id = BOARD_TYPE_ID;
+      |                     ^
+../Core/Src/can_params.c:12:41: note: (near initialization for 'params')
+../Core/Src/main.c:132:21: error: request for member 'board_ttl' in something not a structure or union
+  132 |   vehicle_can_config.board_ttl = BOARD_TTL;
+      |                     ^
+../Core/Src/can_params.c:12:55: warning: excess elements in scalar initializer
+   12 |                                         .SAFE_VALUE = 0,
+      |                                                       ^
+../Core/Src/can_params.c:12:55: note: (near initialization for 'params')
+../Core/Src/can_params.c:13:41: error: field name not in record or union initializer
+   13 |                                         .timestamp = 0,
+      |                                         ^
+../Core/Src/can_params.c:13:41: note: (near initialization for 'params')
+../Core/Src/can_params.c:13:54: warning: excess elements in scalar initializer
+   13 |                                         .timestamp = 0,
+      |                                                      ^
+../Core/Src/can_params.c:13:54: note: (near initialization for 'params')
+../Core/Src/can_params.c:14:41: error: field name not in record or union initializer
+   14 |                                         .TTL = 10,
+      |                                         ^
+../Core/Src/can_params.c:14:41: note: (near initialization for 'params')
+../Core/Src/can_params.c:14:48: warning: excess elements in scalar initializer
+   14 |                                         .TTL = 10,
+      |                                                ^~
+../Core/Src/can_params.c:14:48: note: (near initialization for 'params')
+../Core/Src/can_params.c:15:41: error: field name not in record or union initializer
+   15 |                                         .flags = {.message_mode = PASSIVE, .marked_for_send = 0, .reserved = 0}
+      |                                         ^
+../Core/Src/can_params.c:15:41: note: (near initialization for 'params')
+../Core/Src/can_params.c:15:41: warning: braces around scalar initializer
+../Core/Src/can_params.c:15:41: note: (near initialization for 'params')
+../Core/Src/can_params.c:15:51: error: field name not in record or union initializer
+   15 |                                         .flags = {.message_mode = PASSIVE, .marked_for_send = 0, .reserved = 0}
+      |                                                   ^
+../Core/Src/can_params.c:15:51: note: (near initialization for 'params')
+../Core/Src/can_params.c:15:76: error: field name not in record or union initializer
+   15 |                                         .flags = {.message_mode = PASSIVE, .marked_for_send = 0, .reserved = 0}
+      |                                                                            ^
+../Core/Src/can_params.c:15:76: note: (near initialization for 'params')
+../Core/Src/can_params.c:15:95: warning: excess elements in scalar initializer
+   15 |                                         .flags = {.message_mode = PASSIVE, .marked_for_send = 0, .reserved = 0}
+      |                                                                                               ^
+../Core/Src/can_params.c:15:95: note: (near initialization for 'params')
+../Core/Src/can_params.c:15:98: error: field name not in record or union initializer
+   15 |                                         .flags = {.message_mode = PASSIVE, .marked_for_send = 0, .reserved = 0}
+      |                                                                                                  ^
+../Core/Src/can_params.c:15:98: note: (near initialization for 'params')
+../Core/Src/can_params.c:15:110: warning: excess elements in scalar initializer
+   15 |                                         .flags = {.message_mode = PASSIVE, .marked_for_send = 0, .reserved = 0}
+      |                                                                                                              ^
+../Core/Src/can_params.c:15:110: note: (near initialization for 'params')
+../Core/Src/can_params.c:15:50: warning: excess elements in scalar initializer
+   15 |                                         .flags = {.message_mode = PASSIVE, .marked_for_send = 0, .reserved = 0}
+      |                                                  ^
+../Core/Src/can_params.c:15:50: note: (near initialization for 'params')
+../Core/Src/main.c:145:5: warning: implicit declaration of function 'sw3_can_loop' [-Wimplicit-function-declaration]
+  145 |     sw3_can_loop();
+      |     ^~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+19:26:58 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f7xx_it.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f7xx_it.d" -MT"Core/Src/stm32f7xx_it.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f7xx_it.o"
+In file included from ../Core/Src/can.c:11:
+../Core/Inc/can.h:36:16: warning: useless storage class specifier in empty declaration
+   36 | typedef struct can_param_t;
+      |                ^~~~~~~~~~~
+../Core/Inc/can.h:37:16: warning: useless storage class specifier in empty declaration
+   37 | typedef struct can_params_t;
+      |                ^~~~~~~~~~~~
+../Core/Inc/can.h:54:9: error: unknown type name 'can_params_t'
+   54 |         can_params_t* gv_params;
+      |         ^~~~~~~~~~~~
+In file included from ../Core/Inc/can_params.h:5,
+                 from ../Core/Src/can_params.c:1:
+../Core/Inc/can.h:36:16: warning: useless storage class specifier in empty declaration
+   36 | typedef struct can_param_t;
+      |                ^~~~~~~~~~~
+../Core/Inc/can.h:37:16: warning: useless storage class specifier in empty declaration
+   37 | typedef struct can_params_t;
+      |                ^~~~~~~~~~~~
+../Core/Inc/can.h:54:9: error: unknown type name 'can_params_t'
+   54 |         can_params_t* gv_params;
+      |         ^~~~~~~~~~~~
+../Core/Inc/can.h:72:24: error: unknown type name 'message_mode_t'
+   72 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                        ^~~~~~~~~~~~~~
+../Core/Inc/can.h:72:24: error: unknown type name 'message_mode_t'
+   72 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                        ^~~~~~~~~~~~~~
+../Core/Inc/can.h:72:42: error: unknown type name 'can_param_t'
+   72 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                                          ^~~~~~~~~~~
+../Core/Inc/can.h:72:42: error: unknown type name 'can_param_t'
+   72 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                                          ^~~~~~~~~~~
+../Core/Inc/can.h:74:20: error: unknown type name 'can_param_t'
+   74 | int sw3_force_send(can_param_t *);
+      |                    ^~~~~~~~~~~
+../Core/Inc/can.h:74:20: error: unknown type name 'can_param_t'
+   74 | int sw3_force_send(can_param_t *);
+      |                    ^~~~~~~~~~~
+../Core/Src/can.c: In function 'sw3_can_init':
+../Core/Src/can.c:334:34: warning: passing argument 1 of 'sw3_gv_params_init' from incompatible pointer type [-Wincompatible-pointer-types]
+  334 |         sw3_gv_params_init(config->gv_params);
+      |                            ~~~~~~^~~~~~~~~~~
+      |                                  |
+      |                                  int *
+In file included from ../Core/Src/can.c:13:
+../Core/Inc/can_params.h:47:39: note: expected 'can_params_t *' but argument is of type 'int *'
+   47 | void sw3_gv_params_init(can_params_t *param);
+      |                         ~~~~~~~~~~~~~~^~~~~
+../Core/Src/stm32f7xx_it.c: In function 'TIM3_IRQHandler':
+../Core/Src/can.c: In function 'sw3_set_param_mode':
+../Core/Src/can.c:425:1: warning: control reaches end of non-void function [-Wreturn-type]
+  425 | }
+      | ^
+../Core/Src/stm32f7xx_it.c:240:1: error: 'q' undeclared (first use in this function)
+  240 | q
+      | ^
+../Core/Src/stm32f7xx_it.c:240:1: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/stm32f7xx_it.c:240:2: error: expected ';' before '}' token
+  240 | q
+      |  ^
+      |  ;
+  241 |   /* USER CODE END TIM3_IRQn 1 */
+  242 | }
+      | ~ 
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [Core/Src/subdir.mk:40: Core/Src/can.o] Error 1
+make: *** [Core/Src/subdir.mk:40: Core/Src/stm32f7xx_it.o] Error 1
+../Core/Src/main.c:64:1: error: unknown type name 'can_params_t'
+   64 | can_params_t global_vehicle_parameters;
+      | ^~~~~~~~~~~~
+../Core/Src/main.c:65:1: error: unknown type name 'can_config_t'
+   65 | can_config_t vehicle_can_config;
+      | ^~~~~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:128:21: error: request for member 'errors' in something not a structure or union
+  128 |   vehicle_can_config.errors.present = 0;
+      |                     ^
+../Core/Src/main.c:129:21: error: request for member 'gv_params' in something not a structure or union
+  129 |   vehicle_can_config.gv_params = &global_vehicle_parameters;
+      |                     ^
+../Core/Src/main.c:130:21: error: request for member 'can_id' in something not a structure or union
+  130 |   vehicle_can_config.can_id = BOARD_CAN_ID;
+      |                     ^
+../Core/Src/main.c:131:21: error: request for member 'board_type_id' in something not a structure or union
+  131 |   vehicle_can_config.board_type_id = BOARD_TYPE_ID;
+      |                     ^
+../Core/Src/main.c:132:21: error: request for member 'board_ttl' in something not a structure or union
+  132 |   vehicle_can_config.board_ttl = BOARD_TTL;
+      |                     ^
+../Core/Src/main.c:145:5: warning: implicit declaration of function 'sw3_can_loop' [-Wimplicit-function-declaration]
+  145 |     sw3_can_loop();
+      |     ^~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+19:27:50 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f7xx_it.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f7xx_it.d" -MT"Core/Src/stm32f7xx_it.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f7xx_it.o"
+../Core/Src/can.c: In function 'sw3_set_param_mode':
+../Core/Src/can.c:425:1: warning: control reaches end of non-void function [-Wreturn-type]
+  425 | }
+      | ^
+In file included from ../Core/Inc/can_params.h:5,
+                 from ../Core/Src/can_params.c:1:
+../Core/Inc/can.h:52:9: error: unknown type name 'can_params_t'
+   52 |         can_params_t* gv_params;
+      |         ^~~~~~~~~~~~
+../Core/Inc/can.h:70:24: error: unknown type name 'message_mode_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                        ^~~~~~~~~~~~~~
+../Core/Src/main.c:64:1: error: unknown type name 'can_params_t'
+   64 | can_params_t global_vehicle_parameters;
+      | ^~~~~~~~~~~~
+../Core/Inc/can.h:70:42: error: unknown type name 'can_param_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                                          ^~~~~~~~~~~
+../Core/Inc/can.h:72:20: error: unknown type name 'can_param_t'
+   72 | int sw3_force_send(can_param_t *);
+      |                    ^~~~~~~~~~~
+../Core/Src/main.c:65:1: error: unknown type name 'can_config_t'
+   65 | can_config_t vehicle_can_config;
+      | ^~~~~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:128:21: error: request for member 'errors' in something not a structure or union
+  128 |   vehicle_can_config.errors.present = 0;
+      |                     ^
+../Core/Src/main.c:129:21: error: request for member 'gv_params' in something not a structure or union
+  129 |   vehicle_can_config.gv_params = &global_vehicle_parameters;
+      |                     ^
+../Core/Src/main.c:130:21: error: request for member 'can_id' in something not a structure or union
+  130 |   vehicle_can_config.can_id = BOARD_CAN_ID;
+      |                     ^
+../Core/Src/main.c:131:21: error: request for member 'board_type_id' in something not a structure or union
+  131 |   vehicle_can_config.board_type_id = BOARD_TYPE_ID;
+      |                     ^
+../Core/Src/main.c:132:21: error: request for member 'board_ttl' in something not a structure or union
+  132 |   vehicle_can_config.board_ttl = BOARD_TTL;
+      |                     ^
+../Core/Src/stm32f7xx_it.c: In function 'TIM3_IRQHandler':
+../Core/Src/stm32f7xx_it.c:240:1: error: 'q' undeclared (first use in this function)
+  240 | q
+      | ^
+../Core/Src/stm32f7xx_it.c:240:1: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/stm32f7xx_it.c:240:2: error: expected ';' before '}' token
+  240 | q
+      |  ^
+      |  ;
+  241 |   /* USER CODE END TIM3_IRQn 1 */
+  242 | }
+      | ~ 
+../Core/Src/main.c:145:5: warning: implicit declaration of function 'sw3_can_loop' [-Wimplicit-function-declaration]
+  145 |     sw3_can_loop();
+      |     ^~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [Core/Src/subdir.mk:40: Core/Src/stm32f7xx_it.o] Error 1
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+19:28:25 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f7xx_it.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f7xx_it.d" -MT"Core/Src/stm32f7xx_it.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f7xx_it.o"
+In file included from ../Core/Inc/can_params.h:5,
+                 from ../Core/Src/can_params.c:1:
+../Core/Inc/can.h:52:9: error: unknown type name 'can_params_t'
+   52 |         can_params_t* gv_params;
+      |         ^~~~~~~~~~~~
+../Core/Src/stm32f7xx_it.c: In function 'TIM3_IRQHandler':
+../Core/Src/stm32f7xx_it.c:240:1: error: 'q' undeclared (first use in this function)
+  240 | q
+      | ^
+../Core/Src/stm32f7xx_it.c:240:1: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/stm32f7xx_it.c:240:2: error: expected ';' before '}' token
+  240 | q
+      |  ^
+      |  ;
+  241 |   /* USER CODE END TIM3_IRQn 1 */
+  242 | }
+      | ~ 
+../Core/Src/main.c:64:1: error: unknown type name 'can_params_t'
+   64 | can_params_t global_vehicle_parameters;
+      | ^~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/stm32f7xx_it.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/main.c:65:1: error: unknown type name 'can_config_t'
+   65 | can_config_t vehicle_can_config;
+      | ^~~~~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:128:21: error: request for member 'errors' in something not a structure or union
+  128 |   vehicle_can_config.errors.present = 0;
+      |                     ^
+../Core/Src/main.c:129:21: error: request for member 'gv_params' in something not a structure or union
+  129 |   vehicle_can_config.gv_params = &global_vehicle_parameters;
+      |                     ^
+../Core/Src/main.c:130:21: error: request for member 'can_id' in something not a structure or union
+  130 |   vehicle_can_config.can_id = BOARD_CAN_ID;
+      |                     ^
+../Core/Src/main.c:131:21: error: request for member 'board_type_id' in something not a structure or union
+  131 |   vehicle_can_config.board_type_id = BOARD_TYPE_ID;
+      |                     ^
+../Core/Src/main.c:132:21: error: request for member 'board_ttl' in something not a structure or union
+  132 |   vehicle_can_config.board_ttl = BOARD_TTL;
+      |                     ^
+../Core/Inc/can.h:70:24: error: unknown type name 'message_mode_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                        ^~~~~~~~~~~~~~
+../Core/Src/main.c:145:5: warning: implicit declaration of function 'sw3_can_loop' [-Wimplicit-function-declaration]
+  145 |     sw3_can_loop();
+      |     ^~~~~~~~~~~~
+../Core/Inc/can.h:70:42: error: unknown type name 'can_param_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                                          ^~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+../Core/Inc/can.h:72:20: error: unknown type name 'can_param_t'
+   72 | int sw3_force_send(can_param_t *);
+      |                    ^~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+19:28:51 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f7xx_it.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f7xx_it.d" -MT"Core/Src/stm32f7xx_it.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f7xx_it.o"
+In file included from ../Core/Inc/can_params.h:5,
+                 from ../Core/Src/can_params.c:1:
+../Core/Inc/can.h:52:9: error: unknown type name 'can_params_t'
+   52 |         can_params_t* gv_params;
+      |         ^~~~~~~~~~~~
+In file included from ../Core/Inc/can_params.h:5,
+                 from ../Core/Src/main.c:33:
+../Core/Inc/can.h:52:9: error: unknown type name 'can_params_t'
+   52 |         can_params_t* gv_params;
+      |         ^~~~~~~~~~~~
+../Core/Src/stm32f7xx_it.c: In function 'TIM3_IRQHandler':
+../Core/Src/stm32f7xx_it.c:240:1: error: 'q' undeclared (first use in this function)
+  240 | q
+      | ^
+../Core/Src/stm32f7xx_it.c:240:1: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/stm32f7xx_it.c:240:2: error: expected ';' before '}' token
+  240 | q
+      |  ^
+      |  ;
+  241 |   /* USER CODE END TIM3_IRQn 1 */
+  242 | }
+      | ~ 
+make: *** [Core/Src/subdir.mk:40: Core/Src/stm32f7xx_it.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Inc/can.h:70:24: error: unknown type name 'message_mode_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                        ^~~~~~~~~~~~~~
+../Core/Inc/can.h:70:24: error: unknown type name 'message_mode_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                        ^~~~~~~~~~~~~~
+../Core/Inc/can.h:70:42: error: unknown type name 'can_param_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                                          ^~~~~~~~~~~
+../Core/Inc/can.h:70:42: error: unknown type name 'can_param_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                                          ^~~~~~~~~~~
+../Core/Inc/can.h:72:20: error: unknown type name 'can_param_t'
+   72 | int sw3_force_send(can_param_t *);
+      |                    ^~~~~~~~~~~
+../Core/Inc/can.h:72:20: error: unknown type name 'can_param_t'
+   72 | int sw3_force_send(can_param_t *);
+      |                    ^~~~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:130:32: warning: assignment to 'int *' from incompatible pointer type 'can_params_t *' [-Wincompatible-pointer-types]
+  130 |   vehicle_can_config.gv_params = &global_vehicle_parameters;
+      |                                ^
+../Core/Src/main.c:44:22: warning: unsigned conversion from 'int' to 'uint8_t' {aka 'unsigned char'} changes value from '259' to '3' [-Woverflow]
+   44 | #define BOARD_CAN_ID 0x103
+      |                      ^~~~~
+../Core/Src/main.c:131:31: note: in expansion of macro 'BOARD_CAN_ID'
+  131 |   vehicle_can_config.can_id = BOARD_CAN_ID;
+      |                               ^~~~~~~~~~~~
+../Core/Src/main.c:133:21: error: 'can_config_t' has no member named 'board_ttl'
+  133 |   vehicle_can_config.board_ttl = BOARD_TTL;
+      |                     ^
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+19:31:02 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f7xx_it.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f7xx_it.d" -MT"Core/Src/stm32f7xx_it.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f7xx_it.o"
+In file included from ../Core/Inc/can_params.h:5,
+                 from ../Core/Src/can_params.c:1:
+../Core/Inc/can.h:52:9: error: unknown type name 'can_params_t'
+   52 |         can_params_t* gv_params;
+      |         ^~~~~~~~~~~~
+../Core/Src/stm32f7xx_it.c: In function 'TIM3_IRQHandler':
+../Core/Src/stm32f7xx_it.c:240:1: error: 'q' undeclared (first use in this function)
+  240 | q
+      | ^
+../Core/Src/stm32f7xx_it.c:240:1: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/stm32f7xx_it.c:240:2: error: expected ';' before '}' token
+  240 | q
+      |  ^
+      |  ;
+  241 |   /* USER CODE END TIM3_IRQn 1 */
+  242 | }
+      | ~ 
+In file included from ../Core/Inc/can_params.h:5,
+                 from ../Core/Src/main.c:33:
+../Core/Inc/can.h:52:9: error: unknown type name 'can_params_t'
+   52 |         can_params_t* gv_params;
+      |         ^~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/stm32f7xx_it.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Inc/can.h:70:24: error: unknown type name 'message_mode_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                        ^~~~~~~~~~~~~~
+../Core/Inc/can.h:70:24: error: unknown type name 'message_mode_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                        ^~~~~~~~~~~~~~
+../Core/Inc/can.h:70:42: error: unknown type name 'can_param_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                                          ^~~~~~~~~~~
+../Core/Inc/can.h:70:42: error: unknown type name 'can_param_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                                          ^~~~~~~~~~~
+../Core/Inc/can.h:72:20: error: unknown type name 'can_param_t'
+   72 | int sw3_force_send(can_param_t *);
+      |                    ^~~~~~~~~~~
+../Core/Inc/can.h:72:20: error: unknown type name 'can_param_t'
+   72 | int sw3_force_send(can_param_t *);
+      |                    ^~~~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:130:32: warning: assignment to 'int *' from incompatible pointer type 'can_params_t *' [-Wincompatible-pointer-types]
+  130 |   vehicle_can_config.gv_params = &global_vehicle_parameters;
+      |                                ^
+../Core/Src/main.c:44:22: warning: unsigned conversion from 'int' to 'uint8_t' {aka 'unsigned char'} changes value from '259' to '3' [-Woverflow]
+   44 | #define BOARD_CAN_ID 0x103
+      |                      ^~~~~
+../Core/Src/main.c:131:31: note: in expansion of macro 'BOARD_CAN_ID'
+  131 |   vehicle_can_config.can_id = BOARD_CAN_ID;
+      |                               ^~~~~~~~~~~~
+../Core/Src/main.c:133:21: error: 'can_config_t' has no member named 'board_ttl'
+  133 |   vehicle_can_config.board_ttl = BOARD_TTL;
+      |                     ^
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+19:31:37 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f7xx_it.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f7xx_it.d" -MT"Core/Src/stm32f7xx_it.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f7xx_it.o"
+In file included from ../Core/Inc/can_params.h:5,
+                 from ../Core/Src/main.c:33:
+../Core/Inc/can.h:52:9: error: unknown type name 'can_params_t'
+   52 |         can_params_t* gv_params;
+      |         ^~~~~~~~~~~~
+In file included from ../Core/Inc/can_params.h:5,
+                 from ../Core/Src/can_params.c:1:
+../Core/Inc/can.h:52:9: error: unknown type name 'can_params_t'
+   52 |         can_params_t* gv_params;
+      |         ^~~~~~~~~~~~
+../Core/Inc/can.h:70:24: error: unknown type name 'message_mode_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                        ^~~~~~~~~~~~~~
+../Core/Inc/can.h:70:24: error: unknown type name 'message_mode_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                        ^~~~~~~~~~~~~~
+../Core/Inc/can.h:70:42: error: unknown type name 'can_param_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                                          ^~~~~~~~~~~
+../Core/Inc/can.h:70:42: error: unknown type name 'can_param_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                                          ^~~~~~~~~~~
+../Core/Inc/can.h:72:20: error: unknown type name 'can_param_t'
+   72 | int sw3_force_send(can_param_t *);
+      |                    ^~~~~~~~~~~
+../Core/Inc/can.h:72:20: error: unknown type name 'can_param_t'
+   72 | int sw3_force_send(can_param_t *);
+      |                    ^~~~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:130:32: warning: assignment to 'int *' from incompatible pointer type 'can_params_t *' [-Wincompatible-pointer-types]
+  130 |   vehicle_can_config.gv_params = &global_vehicle_parameters;
+      |                                ^
+../Core/Src/main.c:44:22: warning: unsigned conversion from 'int' to 'uint8_t' {aka 'unsigned char'} changes value from '259' to '3' [-Woverflow]
+   44 | #define BOARD_CAN_ID 0x103
+      |                      ^~~~~
+../Core/Src/main.c:131:31: note: in expansion of macro 'BOARD_CAN_ID'
+  131 |   vehicle_can_config.can_id = BOARD_CAN_ID;
+      |                               ^~~~~~~~~~~~
+../Core/Src/main.c:133:21: error: 'can_config_t' has no member named 'board_ttl'
+  133 |   vehicle_can_config.board_ttl = BOARD_TTL;
+      |                     ^
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+19:32:04 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+In file included from ../Core/Inc/can_params.h:5,
+                 from ../Core/Src/can_params.c:1:
+../Core/Inc/can.h:52:9: error: unknown type name 'can_params_t'
+   52 |         can_params_t* gv_params;
+      |         ^~~~~~~~~~~~
+../Core/Inc/can.h:70:24: error: unknown type name 'message_mode_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                        ^~~~~~~~~~~~~~
+In file included from ../Core/Inc/can_params.h:5,
+                 from ../Core/Src/main.c:33:
+../Core/Inc/can.h:52:9: error: unknown type name 'can_params_t'
+   52 |         can_params_t* gv_params;
+      |         ^~~~~~~~~~~~
+../Core/Inc/can.h:70:42: error: unknown type name 'can_param_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                                          ^~~~~~~~~~~
+../Core/Inc/can.h:70:24: error: unknown type name 'message_mode_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                        ^~~~~~~~~~~~~~
+../Core/Inc/can.h:72:20: error: unknown type name 'can_param_t'
+   72 | int sw3_force_send(can_param_t *);
+      |                    ^~~~~~~~~~~
+../Core/Inc/can.h:70:42: error: unknown type name 'can_param_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                                          ^~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Inc/can.h:72:20: error: unknown type name 'can_param_t'
+   72 | int sw3_force_send(can_param_t *);
+      |                    ^~~~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:130:32: warning: assignment to 'int *' from incompatible pointer type 'can_params_t *' [-Wincompatible-pointer-types]
+  130 |   vehicle_can_config.gv_params = &global_vehicle_parameters;
+      |                                ^
+../Core/Src/main.c:44:22: warning: unsigned conversion from 'int' to 'uint8_t' {aka 'unsigned char'} changes value from '259' to '3' [-Woverflow]
+   44 | #define BOARD_CAN_ID 0x103
+      |                      ^~~~~
+../Core/Src/main.c:131:31: note: in expansion of macro 'BOARD_CAN_ID'
+  131 |   vehicle_can_config.can_id = BOARD_CAN_ID;
+      |                               ^~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+19:32:32 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+In file included from ../Core/Inc/can_params.h:5,
+                 from ../Core/Src/can_params.c:1:
+../Core/Inc/can.h:52:9: error: unknown type name 'can_params_t'
+   52 |         can_params_t* gv_params;
+      |         ^~~~~~~~~~~~
+In file included from ../Core/Inc/can_params.h:5,
+                 from ../Core/Src/main.c:33:
+../Core/Inc/can.h:52:9: error: unknown type name 'can_params_t'
+   52 |         can_params_t* gv_params;
+      |         ^~~~~~~~~~~~
+../Core/Inc/can.h:70:24: error: unknown type name 'message_mode_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                        ^~~~~~~~~~~~~~
+../Core/Inc/can.h:70:24: error: unknown type name 'message_mode_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                        ^~~~~~~~~~~~~~
+../Core/Inc/can.h:70:42: error: unknown type name 'can_param_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                                          ^~~~~~~~~~~
+../Core/Inc/can.h:70:42: error: unknown type name 'can_param_t'
+   70 | int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+      |                                          ^~~~~~~~~~~
+../Core/Inc/can.h:72:20: error: unknown type name 'can_param_t'
+   72 | int sw3_force_send(can_param_t *);
+      |                    ^~~~~~~~~~~
+../Core/Inc/can.h:72:20: error: unknown type name 'can_param_t'
+   72 | int sw3_force_send(can_param_t *);
+      |                    ^~~~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:130:32: warning: assignment to 'int *' from incompatible pointer type 'can_params_t *' [-Wincompatible-pointer-types]
+  130 |   vehicle_can_config.gv_params = &global_vehicle_parameters;
+      |                                ^
+make: *** [Core/Src/subdir.mk:40: Core/Src/can_params.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+19:33:04 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/can_params.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can_params.d" -MT"Core/Src/can_params.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can_params.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/can.c: In function 'sw3_set_param_mode':
+../Core/Src/can.c:425:1: warning: control reaches end of non-void function [-Wreturn-type]
+  425 | }
+      | ^
+../Core/Src/main.c:66:1: error: unknown type name 'can_config_t'
+   66 | can_config_t vehicle_can_config;
+      | ^~~~~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:129:21: error: request for member 'errors' in something not a structure or union
+  129 |   vehicle_can_config.errors.present = 0;
+      |                     ^
+../Core/Src/main.c:130:21: error: request for member 'gv_params' in something not a structure or union
+  130 |   vehicle_can_config.gv_params = &global_vehicle_parameters;
+      |                     ^
+../Core/Src/main.c:131:21: error: request for member 'can_id' in something not a structure or union
+  131 |   vehicle_can_config.can_id = BOARD_CAN_ID;
+      |                     ^
+../Core/Src/main.c:132:21: error: request for member 'board_type_id' in something not a structure or union
+  132 |   vehicle_can_config.board_type_id = BOARD_TYPE_ID;
+      |                     ^
+../Core/Src/main.c:133:21: error: request for member 'ttl' in something not a structure or union
+  133 |   vehicle_can_config.ttl = BOARD_TTL;
+      |                     ^
+../Core/Src/main.c:146:5: warning: implicit declaration of function 'sw3_can_loop' [-Wimplicit-function-declaration]
+  146 |     sw3_can_loop();
+      |     ^~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+19:33:15 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Template.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\corre\coding\Software-3\Template\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Template.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Template.elf
+ 
+arm-none-eabi-size  Template.elf 
+arm-none-eabi-objdump -h -S Template.elf  > "Template.list"
+   text	   data	    bss	    dec	    hex	filename
+  14196	     16	   1936	  16148	   3f14	Template.elf
+Finished building: default.size.stdout
+ 
+Finished building: Template.list
+ 

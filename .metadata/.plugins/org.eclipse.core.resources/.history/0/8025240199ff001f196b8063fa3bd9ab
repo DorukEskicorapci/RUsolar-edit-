@@ -16,7 +16,7 @@ typedef enum
 typedef struct
 {
 	unsigned char message_mode : 4, marked_for_send : 1, reserved : 3;// - AUTO_BROADCAST: do not read, send when a change is detected
-} internal_flags_t; // - MANUAL_BROADCAST: do not read, send when an update is manually triggeredternal_flags_t;
+}// - MANUAL_BROADCAST: do not read, send when an update is manually triggeredternal_flags_t;
 
 // Define CAN message structure
 // CAN structure is as follows:

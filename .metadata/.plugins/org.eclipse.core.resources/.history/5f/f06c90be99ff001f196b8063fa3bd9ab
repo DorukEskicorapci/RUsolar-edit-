@@ -30,8 +30,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "can_params.h"
-#include "can.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -42,7 +40,7 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
-#define BOARD_CAN_ID (uint8_t)0x103
+#define BOARD_CAN_ID 0x103
 #define BOARD_TYPE_ID 0
 #define BOARD_TTL 10
 
@@ -131,7 +129,7 @@ int main(void)
   vehicle_can_config.gv_params = &global_vehicle_parameters;
   vehicle_can_config.can_id = BOARD_CAN_ID;
   vehicle_can_config.board_type_id = BOARD_TYPE_ID;
-  vehicle_can_config.ttl = BOARD_TTL;
+  vehicle_can_config.board_ttl = BOARD_TTL;
   
 
   /* USER CODE END 2 */
