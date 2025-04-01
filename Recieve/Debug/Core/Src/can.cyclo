@@ -8,6 +8,6 @@
 ../Core/Src/can.c:287:6:HAL_CAN_RxFifo0MsgPendingCallback	1
 ../Core/Src/can.c:295:6:sw3_can_error_handler	2
 ../Core/Src/can.c:319:6:sw3_can_init	1
-../Core/Src/can.c:373:6:sw3_can_loop	8
-../Core/Src/can.c:418:5:sw3_set_param_mode	1
-../Core/Src/can.c:428:5:sw3_force_send	3
+../Core/Src/can.c:373:6:sw3_can_loop	9
+../Core/Src/can.c:415:6:sw3_set_param_mode	1
+../Core/Src/can.c:425:5:sw3_force_send	3

@@ -67,7 +67,7 @@ void sw3_can_interrupt_handler(CAN_HandleTypeDef* hcan);
 
 void sw3_can_loop();
 
-int sw3_set_param_mode(message_mode_t a, can_param_t* b);
+void sw3_set_param_mode(message_mode_t a, can_param_t* b);
 
 int sw3_force_send(can_param_t *);
 

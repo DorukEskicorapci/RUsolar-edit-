@@ -21,7 +21,7 @@ void sw3_gv_params_init(can_params_t *gv_params)
 					.SAFE_VALUE = 0,
 					.timestamp = 0,
 					.TTL = 20,
-					.flags = {.message_mode = MANUAL_BROADCAST, .marked_for_send = 0, .reserved = 0}
+					.flags = {.message_mode = AUTO_BROADCAST, .marked_for_send = 0, .reserved = 0}
 			}
 	};
 

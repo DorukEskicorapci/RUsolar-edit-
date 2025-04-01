@@ -9,5 +9,5 @@
 ../Core/Src/can.c:295:6:sw3_can_error_handler	24	static
 ../Core/Src/can.c:319:6:sw3_can_init	56	static
 ../Core/Src/can.c:373:6:sw3_can_loop	16	static
-../Core/Src/can.c:418:5:sw3_set_param_mode	16	static
-../Core/Src/can.c:428:5:sw3_force_send	16	static
+../Core/Src/can.c:415:6:sw3_set_param_mode	16	static
+../Core/Src/can.c:425:5:sw3_force_send	16	static

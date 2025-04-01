@@ -393,21 +393,30 @@ void sw3_can_loop()
 	{
 		static can_payload_t payload;
 
-		if (gv_params_arr[i].flags.marked_for_send == 1)
-		{
-			if (gv_params_arr[i].flags.message_mode != AUTO_BROADCAST &&
-				gv_params_arr[i].flags.message_mode != MANUAL_BROADCAST)
-			{
-				config->errors.runtime = 1;
-				continue;
+		// checks if the param is a broadcast
+		if (gv_params_arr[i].flags.message_mode == AUTO_BROADCAST ||
+			gv_params_arr[i].flags.message_mode == MANUAL_BROADCAST) {
+
+			// if it is an auto broadcast check ttl and change
+			if (gv_params_arr[i].flags.message_mode == AUTO_BROADCAST) {
+				// if the parameter value has changed, mark it for send
+				if (gv_params_arr[i].value != gv_params_arr[i].last_value) {
+					gv_params_arr[i].flags.marked_for_send = 1;
+				}
+
+				// TODO: Check TTL
 			}
 
-			payload.id = gv_params_arr[i].PARAM_ID;
-			payload.value = gv_params_arr[i].value;
-
-			if (send_can_message(payload.data) == HAL_OK)
+			if (gv_params_arr[i].flags.marked_for_send)
 			{
-				gv_params_arr[i].flags.marked_for_send = 0;
+				payload.id = gv_params_arr[i].PARAM_ID;
+				payload.value = gv_params_arr[i].value;
+
+				if (send_can_message(payload.data) == HAL_OK)
+				{
+					gv_params_arr[i].last_value = gv_params_arr[i].value;
+					gv_params_arr[i].flags.marked_for_send = 0;
+				}
 			}
 		}
 	}

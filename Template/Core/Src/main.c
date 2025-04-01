@@ -147,7 +147,6 @@ int main(void)
 	if (HAL_GetTick() > counter + 500) {
 		counter = HAL_GetTick();
 		global_vehicle_parameters.led.value = !global_vehicle_parameters.led.value;
-		global_vehicle_parameters.led.flags.marked_for_send = 1;
 		HAL_GPIO_TogglePin(LED_CAN_GPIO_Port, LED_CAN_Pin);
 	}
     /* USER CODE BEGIN 3 */
