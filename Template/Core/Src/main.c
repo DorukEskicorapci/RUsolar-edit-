@@ -42,7 +42,7 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
-#define BOARD_CAN_ID (uint8_t)0x103
+#define BOARD_CAN_ID (uint8_t)0x105
 #define BOARD_TYPE_ID 0
 #define BOARD_TTL 10
 
@@ -132,6 +132,8 @@ int main(void)
   vehicle_can_config.can_id = BOARD_CAN_ID;
   vehicle_can_config.board_type_id = BOARD_TYPE_ID;
   vehicle_can_config.ttl = BOARD_TTL;
+  sw3_can_init(&hcan1, &vehicle_can_config);
+  int counter = HAL_GetTick();
   
 
   /* USER CODE END 2 */
@@ -142,7 +144,12 @@ int main(void)
   {
     // Content of the while loop here
     /* USER CODE END WHILE */
-
+	if (HAL_GetTick() > counter + 500) {
+		counter = HAL_GetTick();
+		global_vehicle_parameters.led.value = !global_vehicle_parameters.led.value;
+		global_vehicle_parameters.led.flags.marked_for_send = 1;
+		HAL_GPIO_TogglePin(LED_CAN_GPIO_Port, LED_CAN_Pin);
+	}
     /* USER CODE BEGIN 3 */
     sw3_can_loop();
   }

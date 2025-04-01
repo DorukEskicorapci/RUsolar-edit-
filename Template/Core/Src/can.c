@@ -95,12 +95,14 @@ static can_param_t *find_param_by_id(uint16_t id)
  */
 static HAL_StatusTypeDef send_can_message(uint8_t data[8])
 {
+
 	// Make sure we don't send a NULL pointer
 	if (data == NULL) {
 		return HAL_ERROR;
 	}
 
 	return HAL_CAN_AddTxMessage(can_hcan, &can_tx_header, data, &tx_mailbox);
+
 }
 
 /**
@@ -371,7 +373,7 @@ void sw3_can_init(CAN_HandleTypeDef *hcan, can_config_t *func_config)
  */
 void sw3_can_loop()
 {
-	heartbeat_loop();
+	//heartbeat_loop();
 
 	if (hb_pending)
 	{
@@ -391,9 +393,9 @@ void sw3_can_loop()
 	{
 		static can_payload_t payload;
 
-		if (gv_params_arr[i].flags.marked_for_send)
+		if (gv_params_arr[i].flags.marked_for_send == 1)
 		{
-			if (gv_params_arr[i].flags.message_mode != AUTO_BROADCAST ||
+			if (gv_params_arr[i].flags.message_mode != AUTO_BROADCAST &&
 				gv_params_arr[i].flags.message_mode != MANUAL_BROADCAST)
 			{
 				config->errors.runtime = 1;
@@ -401,7 +403,7 @@ void sw3_can_loop()
 			}
 
 			payload.id = gv_params_arr[i].PARAM_ID;
-			payload.id = gv_params_arr[i].value;
+			payload.value = gv_params_arr[i].value;
 
 			if (send_can_message(payload.data) == HAL_OK)
 			{
@@ -422,6 +424,8 @@ int sw3_set_param_mode(message_mode_t msg_mode, can_param_t* param) {
 
 	// clear marked-for-send flag to false
 	param->flags.marked_for_send = 0;
+
+	return 1;
 }
 
 int sw3_force_send(can_param_t *param) {
@@ -434,6 +438,10 @@ int sw3_force_send(can_param_t *param) {
 	) {
 		// set mark-for-send to true
 		param->flags.marked_for_send = 1;
+		static can_payload_t payload;
+		payload.id = param->PARAM_ID;
+		payload.value = param->value;
+		send_can_message(payload.data);
 
 		return 1;
 	}
