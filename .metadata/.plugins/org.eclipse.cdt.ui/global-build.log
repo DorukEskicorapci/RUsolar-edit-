@@ -12,3 +12,83 @@ arm-none-eabi-size  Template.elf
   14664	     64	   1960	  16688	   4130	Template.elf
 Finished building: default.size.stdout
  
+21:54:10 **** Incremental Build of configuration Debug for project Recieve ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc -o "Recieve.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\corre\coding\Software-3\Recieve\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Recieve.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Recieve.elf
+ 
+arm-none-eabi-size  Recieve.elf 
+arm-none-eabi-objdump -h -S Recieve.elf  > "Recieve.list"
+   text	   data	    bss	    dec	    hex	filename
+  14744	     64	   1960	  16768	   4180	Recieve.elf
+Finished building: default.size.stdout
+ 
+Finished building: Recieve.list
+ 
+21:54:12 **** Incremental Build of configuration Debug for project Template ****
+make -j22 all 
+arm-none-eabi-size  Template.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14664	     64	   1960	  16688	   4130	Template.elf
+Finished building: default.size.stdout
+ 
+22:03:23 **** Incremental Build of configuration Debug for project Recieve ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+In file included from ../Core/Src/can.c:11:
+../Core/Inc/can.h:83:73: error: unknown type name 'uint32_T'; did you mean 'uint32_t'?
+   83 | void sw3_can_set_gv_params_callback(void (*callback)(uint16_t param_id, uint32_T payload));
+      |                                                                         ^~~~~~~~
+      |                                                                         uint32_t
+../Core/Src/can.c:160:73: error: unknown type name 'uint32_T'; did you mean 'uint32_t'?
+  160 | void sw3_can_set_gv_params_callback(void (*callback)(uint16_t param_id, uint32_T payload)) {
+      |                                                                         ^~~~~~~~
+      |                                                                         uint32_t
+In file included from ../Core/Src/main.c:34:
+../Core/Inc/can.h:83:73: error: unknown type name 'uint32_T'; did you mean 'uint32_t'?
+   83 | void sw3_can_set_gv_params_callback(void (*callback)(uint16_t param_id, uint32_T payload));
+      |                                                                         ^~~~~~~~
+      |                                                                         uint32_t
+make: *** [Core/Src/subdir.mk:40: Core/Src/can.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:155:3: warning: implicit declaration of function 'sw3_can_set_gv_params_callback'; did you mean 'sw3_can_set_shared_params_callback'? [-Wimplicit-function-declaration]
+  155 |   sw3_can_set_gv_params_callback(gv_params_callback);
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |   sw3_can_set_shared_params_callback
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+22:03:43 **** Incremental Build of configuration Debug for project Recieve ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/can.c:160:73: error: unknown type name 'uint32_T'; did you mean 'uint32_t'?
+  160 | void sw3_can_set_gv_params_callback(void (*callback)(uint16_t param_id, uint32_T payload)) {
+      |                                                                         ^~~~~~~~
+      |                                                                         uint32_t
+make: *** [Core/Src/subdir.mk:40: Core/Src/can.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j22 all" terminated with exit code 2. Build might be incomplete.
+22:03:53 **** Incremental Build of configuration Debug for project Recieve ****
+make -j22 all 
+arm-none-eabi-gcc "../Core/Src/can.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/can.d" -MT"Core/Src/can.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/can.o"
+arm-none-eabi-gcc -o "Recieve.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\corre\coding\Software-3\Recieve\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Recieve.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Recieve.elf
+ 
+arm-none-eabi-size  Recieve.elf 
+arm-none-eabi-objdump -h -S Recieve.elf  > "Recieve.list"
+   text	   data	    bss	    dec	    hex	filename
+  14848	     64	   1968	  16880	   41f0	Recieve.elf
+Finished building: default.size.stdout
+ 
+Finished building: Recieve.list
+ 
+22:03:59 **** Incremental Build of configuration Debug for project Recieve ****
+make -j22 all 
+arm-none-eabi-size  Recieve.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14848	     64	   1968	  16880	   41f0	Recieve.elf
+Finished building: default.size.stdout
+ 

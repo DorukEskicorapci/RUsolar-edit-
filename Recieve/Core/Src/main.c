@@ -82,7 +82,7 @@ static void MX_TIM3_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-void gv_params_callback(uint16_t id, uint32_t value) {
+void gv_commands_callback(uint16_t id, uint32_t value) {
 
 	if (id == global_vehicle_parameters.led.PARAM_ID) {
 		HAL_GPIO_WritePin(LED_CAN_GPIO_Port, LED_CAN_Pin, value);
@@ -91,6 +91,13 @@ void gv_params_callback(uint16_t id, uint32_t value) {
 	}
 
 }
+
+void gv_params_callback(uint16_t id, uint32_t value) {
+	if (id == global_vehicle_parameters.led.PARAM_ID) {
+		HAL_GPIO_WritePin(LED_CAN_GPIO_Port, LED_CAN_Pin, value);
+	}
+}
+
 
 /* USER CODE END 0 */
 
@@ -144,7 +151,8 @@ int main(void)
   vehicle_can_config.ttl = BOARD_TTL;
   sw3_can_init(&hcan1, &vehicle_can_config);
   sw3_gv_params_init(&global_vehicle_parameters);
-  sw3_can_set_gv_commands_callback(gv_params_callback);
+  sw3_can_set_gv_commands_callback(gv_commands_callback);
+  sw3_can_set_gv_params_callback(gv_params_callback);
 
 
   /* USER CODE END 2 */
@@ -157,7 +165,6 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	HAL_GPIO_WritePin(LED_CAN_GPIO_Port, LED_CAN_Pin, global_vehicle_parameters.led.value);
     sw3_can_loop();
   }
   /* USER CODE END 3 */

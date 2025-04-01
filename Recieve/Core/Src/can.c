@@ -60,6 +60,7 @@ static can_config_t *config = NULL;
 static void (*sw3_can_third_party_callback)(CAN_RxHeaderTypeDef, uint8_t[8]) = NULL;
 static void (*sw3_can_gv_commands_callback)(uint16_t param_id, uint32_t payload) = NULL;
 static void (*sw3_can_shared_params_callback)(CAN_RxHeaderTypeDef, uint16_t param_id, uint32_t payload) = NULL;
+static void (*sw3_can_gv_params_callback)(uint16_t param_id, uint32_t payload) = NULL;
 
 static uint8_t hb_message_count = 0;
 static uint32_t hb_timestamp = 0;
@@ -155,6 +156,14 @@ void sw3_can_set_shared_params_callback(void (*callback)(CAN_RxHeaderTypeDef , u
 		return;
 	sw3_can_shared_params_callback = callback;
 }
+
+void sw3_can_set_gv_params_callback(void (*callback)(uint16_t param_id, uint32_t payload)) {
+	if (callback == NULL) {
+		return;
+	}
+	sw3_can_gv_params_callback = callback;
+}
+
 
 /**
  * This function is called when a message is received from CAN bus
@@ -269,6 +278,8 @@ void sw3_can_interrupt_handler(CAN_HandleTypeDef *hcan)
 		param->value = can_payload.value;
 
 		param->timestamp = HAL_GetTick();
+
+		sw3_can_gv_params_callback(can_payload.id, can_payload.value);
 	}
 	else
 	{
@@ -372,7 +383,7 @@ void sw3_can_init(CAN_HandleTypeDef *hcan, can_config_t *func_config)
  */
 void sw3_can_loop()
 {
-//	heartbeat_loop();
+	//heartbeat_loop();
 
 	if (hb_pending)
 	{
@@ -392,16 +403,28 @@ void sw3_can_loop()
 	{
 		static can_payload_t payload;
 
+		// checks if the param is a broadcast
+		if (gv_params_arr[i].flags.message_mode == AUTO_BROADCAST ||
+			gv_params_arr[i].flags.message_mode == MANUAL_BROADCAST) {
 
-		if (gv_params_arr[i].flags.message_mode != AUTO_BROADCAST &&
-			gv_params_arr[i].flags.message_mode != MANUAL_BROADCAST) {
-			if (gv_params_arr[i].flags.marked_for_send || (gv_params_arr[i].value != gv_params_arr[i].last_value))
+			// if it is an auto broadcast check ttl and change
+			if (gv_params_arr[i].flags.message_mode == AUTO_BROADCAST) {
+				// if the parameter value has changed, mark it for send
+				if (gv_params_arr[i].value != gv_params_arr[i].last_value) {
+					gv_params_arr[i].flags.marked_for_send = 1;
+				}
+
+				// TODO: Check TTL
+			}
+
+			if (gv_params_arr[i].flags.marked_for_send)
 			{
 				payload.id = gv_params_arr[i].PARAM_ID;
 				payload.value = gv_params_arr[i].value;
 
 				if (send_can_message(payload.data) == HAL_OK)
 				{
+					gv_params_arr[i].last_value = gv_params_arr[i].value;
 					gv_params_arr[i].flags.marked_for_send = 0;
 				}
 			}

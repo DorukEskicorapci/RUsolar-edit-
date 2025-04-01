@@ -80,4 +80,6 @@ void sw3_can_set_gv_commands_callback(void (*callback)(uint16_t param_id, uint32
 
 void sw3_can_set_shared_params_callback(void (*callback)(CAN_RxHeaderTypeDef header, uint16_t param_id, uint32_t payload));
 
+void sw3_can_set_gv_params_callback(void (*callback)(uint16_t param_id, uint32_t payload));
+
 #endif
