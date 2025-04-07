@@ -1,4 +1,4 @@
-21:54:12 **** Incremental Build of configuration Debug for project Template ****
+20:36:00 **** Incremental Build of configuration Debug for project Template ****
 make -j22 all 
 arm-none-eabi-size  Template.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size  Template.elf
 Finished building: default.size.stdout
  
 
-21:54:12 Build Finished. 0 errors, 0 warnings. (took 331ms)
+20:36:01 Build Finished. 0 errors, 0 warnings. (took 353ms)
 
