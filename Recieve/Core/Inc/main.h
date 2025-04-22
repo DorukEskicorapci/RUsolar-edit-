@@ -66,6 +66,10 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define CON_BAT_G_Pin GPIO_PIN_2
+#define CON_BAT_G_GPIO_Port GPIOE
+#define CON_SC_G_Pin GPIO_PIN_3
+#define CON_SC_G_GPIO_Port GPIOE
 #define BTN_1_Pin GPIO_PIN_13
 #define BTN_1_GPIO_Port GPIOC
 #define BTN_1_EXTI_IRQn EXTI15_10_IRQn
@@ -73,6 +77,12 @@ void Error_Handler(void);
 #define LED_CAN_GPIO_Port GPIOF
 #define LED_BOARD_Pin GPIO_PIN_9
 #define LED_BOARD_GPIO_Port GPIOF
+#define BMS_DCH_EN_Pin GPIO_PIN_5
+#define BMS_DCH_EN_GPIO_Port GPIOA
+#define SW_SCE_Pin GPIO_PIN_0
+#define SW_SCE_GPIO_Port GPIOG
+#define SW_BAT_Pin GPIO_PIN_8
+#define SW_BAT_GPIO_Port GPIOE
 
 /* USER CODE BEGIN Private defines */
 
