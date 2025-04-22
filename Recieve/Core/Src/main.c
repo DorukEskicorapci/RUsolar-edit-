@@ -163,6 +163,30 @@ int main(void)
   {
     // Content of the while loop here
     /* USER CODE END WHILE */
+    int BMS_DCH_EN_check = HAL_GPIO_ReadPin(BMS_DCH_EN_GPIO_Port, BMS_DCH_EN_Pin);
+    int SW_SCE_check = HAL_GPIO_ReadPin(SW_SCE_GPIO_Port, SW_SCE_PIN);
+    int SW_BAT_check = HAL_GPIO_ReadPin(SW_BAT_GPIO_Port, SW_BAT_PIN);
+    
+    //turn on CON_BAT_G
+    if(BMS_DCH_EN_check == 1) { 
+      if(SW_BAT_check == 1) {
+        HAL_GPIO_WritePin(CON_BAT_G_GPIO_Port, CON_BAT_G_Pin, GPIO_PIN_SET);
+      }
+      else {
+        HAL_GPIO_WritePin(CON_BAT_G_GPIO_Port, CON_BAT_G_Pin, GPIO_PIN_RESET);
+      }
+
+      if (SW_SCE_check == 1 && SW_BAT_check == 1) {
+        HAL_GPIO_WritePin(CON_SC_G_GPIO_Port, CON_SC_G_Pin, GPIO_PIN_SET);
+      } else {
+        HAL_GPIO_WritePin(CON_SC_G_GPIO_Port, CON_SC_G_Pin, GPIO_PIN_RESET);
+      }      
+
+      
+    } else {
+      HAL_GPIO_WritePin(CON_BAT_G_GPIO_Port, CON_BAT_G_Pin, GPIO_PIN_RESET);
+      HAL_GPIO_WritePin(CON_SC_G_GPIO_Port, CON_SC_G_Pin, GPIO_PIN_RESET);
+    }
 
     /* USER CODE BEGIN 3 */
     sw3_can_loop();
